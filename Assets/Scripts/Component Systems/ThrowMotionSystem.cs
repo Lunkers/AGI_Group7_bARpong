@@ -22,13 +22,14 @@ public class ThrowMotionSystem : JobComponentSystem
             {
                 //debug to check input works
                 Debug.Log("pressed space");
+                Debug.Log(t.initialVelocity);
 
                 //add initial velocity
                 entityManager.AddComponentData(e, new PhysicsVelocity{
                     Linear = new float3(t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), 0)
                 });
                 //add physics mass to entity
-                entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, 1f));
+                entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
 
             }
 
