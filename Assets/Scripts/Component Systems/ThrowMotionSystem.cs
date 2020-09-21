@@ -3,7 +3,7 @@ using Unity.Jobs;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Physics.Extensions;
+using Collider = Unity.Physics.Collider;
 using UnityEngine;
 
 /**
@@ -14,14 +14,22 @@ public class ThrowMotionSystem : JobComponentSystem
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        Entities.WithStructuralChanges().ForEach((ref PhysicsVelocity velocity,ref Translation translation, ref Rotation rotation,  ref LaunchInput l, ref Throwable t) =>
+        EntityManager entityManager = EntityManager;
+        Entities.WithStructuralChanges().ForEach((ref Entity e, ref LaunchInput l, ref Throwable t, ref PhysicsCollider collider) =>
         {
             bool launchPressed = Input.GetKey(l.launchKey);
             if (launchPressed)
             {
-                Debug.Log("pressed space!");
-                velocity.Linear.x = t.initialVelocity * math.cos(t.angle);
-                velocity.Linear.y = t.initialVelocity * math.sin(t.angle);
+                //debug to check input works
+                Debug.Log("pressed space");
+
+                //add initial velocity
+                entityManager.AddComponentData(e, new PhysicsVelocity{
+                    Linear = new float3(t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), 0)
+                });
+                //add physics mass to entity
+                entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, 1f));
+
             }
 
         }).Run();
