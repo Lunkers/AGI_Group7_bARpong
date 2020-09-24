@@ -3,38 +3,43 @@ using Unity.Jobs;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Physics;
-using Collider = Unity.Physics.Collider;
 using UnityEngine;
 
 /**
     Simple implementation of a throw motion, works on throwable components
 **/
-public class ThrowMotionSystem : JobComponentSystem
+public class ThrowMotionSystem : SystemBase
 {
 
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
+
+    protected override void OnUpdate()
+    {
+        return;
+    }
+
+    public void Launch()
     {
         EntityManager entityManager = EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e, ref LaunchInput l, ref Throwable t, ref PhysicsCollider collider) =>
         {
-            bool launchPressed = Input.GetKey(l.launchKey);
-            if (launchPressed)
+            if (t.thrown)
             {
-                //debug to check input works
-                Debug.Log("pressed space");
-                Debug.Log(t.initialVelocity);
-
-                //add initial velocity
-                entityManager.AddComponentData(e, new PhysicsVelocity{
-                    Linear = new float3(t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), 0)
-                });
-                //add physics mass to entity
-                entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
-
+                return;
             }
+            //debug to check input works
+            Debug.Log("Launching");
+            //add initial velocity
+            //get camera direction
+            var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
+            var camDirection = cameraData.transform.forward;
 
+            entityManager.AddComponentData(e, new PhysicsVelocity
+            {
+                Linear = new float3(camDirection.x * t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), camDirection.z * t.initialVelocity * math.cos(t.angle))
+            });
+            //add physics mass to entity
+            t.thrown = true;
+            entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
         }).Run();
-
-        return default;
     }
 }
