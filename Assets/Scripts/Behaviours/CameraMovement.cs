@@ -56,6 +56,13 @@ public class CameraMovement : MonoBehaviour
         {
             transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime));
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Debug.Log("Pressed Space");
+            ThrowMotionSystem throwSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
+            throwSystem.Reset();
+        }
     }
 
 

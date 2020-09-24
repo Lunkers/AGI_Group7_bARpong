@@ -17,6 +17,7 @@ public class ThrowMotionSystem : SystemBase
         return;
     }
 
+    //Adds physics properties to the throwables, and "launches" them
     public void Launch()
     {
         EntityManager entityManager = EntityManager;
@@ -40,6 +41,21 @@ public class ThrowMotionSystem : SystemBase
             //add physics mass to entity
             t.thrown = true;
             entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
+        }).Run();
+    }
+
+    //resets the ball back to camera
+    public void Reset()
+    {
+        EntityManager entityManager = EntityManager;
+        Entities.WithStructuralChanges().ForEach((ref Entity e,ref PhysicsVelocity velocity, ref Throwable throwable) =>
+        {
+            if (throwable.thrown)
+            {
+                throwable.thrown = !throwable.thrown;
+                EntityManager.RemoveComponent(e, typeof(PhysicsMass));
+                velocity.Linear = new float3(0, 0, 0);
+            }
         }).Run();
     }
 }
