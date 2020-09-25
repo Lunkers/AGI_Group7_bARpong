@@ -63,6 +63,14 @@ public class CameraMovement : MonoBehaviour
             ThrowMotionSystem throwSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
             throwSystem.Reset();
         }
+
+        if (Input.GetKey(KeyCode.Z)) {
+            transform.Rotate( speed * Time.deltaTime,0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.X)) {
+            transform.Rotate (-speed * Time.deltaTime,0, 0);
+        }
     }
 
 
