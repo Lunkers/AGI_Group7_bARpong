@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using UnityEngine;
 
 [GenerateAuthoringComponent]
 public struct Throwable :  IComponentData {
@@ -6,4 +7,7 @@ public struct Throwable :  IComponentData {
     public float initialVelocity;
 
     public float mass; //the mass in grams
+    public bool thrown;
+    public Entity camera;
 }
+
