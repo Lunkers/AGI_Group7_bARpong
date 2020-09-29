@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game.unity
     guid: 2cd0a95460342aa4ca8718b3189afd85
+  - enabled: 0
+    path: Assets/ThrowDemonstration.unity
+    guid: 71bbed2519674438ba0e2c2215222b0c
   m_configObjects: {}
