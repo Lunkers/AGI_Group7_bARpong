@@ -66,7 +66,6 @@ public class ResetThrowableSystem : SystemBase
 
             if(triggerResetComponent.resetThrowables)
             {
-                Debug.Log("Resetting");
                 //reset thrown statueś here
                 var throwable = throwableGroup[dynamicEntity];
                 throwable.thrown = false;
