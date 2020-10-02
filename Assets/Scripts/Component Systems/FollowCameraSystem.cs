@@ -15,7 +15,7 @@ public class FollowCameraSystem : SystemBase
             {
                 var camData = entityManager.GetComponentObject<Camera>(throwable.camera);
                 //Debug.Log(camData.transform.position);
-                translation.Value = camData.transform.position + camData.transform.forward * 5;
+                translation.Value = camData.transform.position + camData.transform.forward * 0.5f;
                 throwable.angle = math.radians(-camData.transform.localRotation.eulerAngles.x);
                 r.Value = camData.transform.localRotation;
             }
