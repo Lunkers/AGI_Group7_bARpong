@@ -6,12 +6,12 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public float speed = 10f;
-    public Entity PingPongBall = Entity.Null;
-
+    ThrowMotionSystem throwMotionSystem;
     // Start is called before the first frame update
     void Start()
     {
-        
+        throwMotionSystem =World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
+        Debug.Log(throwMotionSystem != null);
     }
 
     // Update is called once per frame
@@ -35,9 +35,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Pressed Space");
-            ThrowMotionSystem throwSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
-            throwSystem.Launch();
+            throwMotionSystem.Launch();
         }
         if (Input.GetKey(KeyCode.Q))
         {
@@ -59,9 +57,7 @@ public class CameraMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            Debug.Log("Pressed Space");
-            ThrowMotionSystem throwSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
-            throwSystem.Reset();
+            throwMotionSystem.Reset();
         }
 
         if (Input.GetKey(KeyCode.Z)) {

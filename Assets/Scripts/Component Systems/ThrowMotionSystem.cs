@@ -21,7 +21,7 @@ public class ThrowMotionSystem : SystemBase
     public void Launch()
     {
         EntityManager entityManager = EntityManager;
-        Entities.WithStructuralChanges().ForEach((ref Entity e, ref LaunchInput l, ref Throwable t, ref PhysicsCollider collider) =>
+        Entities.WithStructuralChanges().ForEach((ref Entity e, ref Throwable t, ref PhysicsCollider collider) =>
         {
             if (t.thrown)
             {
@@ -33,6 +33,7 @@ public class ThrowMotionSystem : SystemBase
             //get camera direction
             var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
+    
 
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
