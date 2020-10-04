@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -9,6 +10,8 @@ public class TablePlacer : MonoBehaviour
 {
     public GameObject table;
     public GameObject placementIndicator;
+    public TablePlacementState tablePlacementState;
+
 
     private ARPlaneManager planeManager;
     private ARRaycastManager raycastManager;
@@ -63,6 +66,7 @@ public class TablePlacer : MonoBehaviour
         var rotation = Quaternion.LookRotation(cameraBearing);
 
         Instantiate(table, placementPose.position, rotation);
+        
         Destroy(this);
     }
 
@@ -92,12 +96,17 @@ public class TablePlacer : MonoBehaviour
             var cameraForward = Camera.current.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0.0f, cameraForward.z).normalized;
             placementPose.rotation = Quaternion.LookRotation(cameraBearing);
-
+            
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
         else
         {
             placementIndicator.SetActive(false);
         }
+    }
+
+    private void OnDestroy() {
+        //set state on destruction
+        tablePlacementState.isTablePlaced = true;
     }
 }

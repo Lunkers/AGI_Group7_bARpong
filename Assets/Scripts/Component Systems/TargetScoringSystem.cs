@@ -90,7 +90,9 @@ public class TargetScoringSystem : SystemBase
             //remove cup if it should be deleted;
             if (goalComponent.deleteOnScore)
             {
+                commandBuffer.DestroyEntity(goalComponent.cup);
                 commandBuffer.DestroyEntity(goalEntity);
+                
             }
         }
     }
