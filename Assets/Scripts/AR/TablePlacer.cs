@@ -10,6 +10,7 @@ public class TablePlacer : MonoBehaviour
 {
     public GameObject table;
     public GameObject placementIndicator;
+    public GameObject ball;
     public TablePlacementState tablePlacementState;
 
 
@@ -66,6 +67,7 @@ public class TablePlacer : MonoBehaviour
         var rotation = Quaternion.LookRotation(cameraBearing);
 
         Instantiate(table, placementPose.position, rotation);
+        Instantiate(ball);
         
         Destroy(this);
     }
