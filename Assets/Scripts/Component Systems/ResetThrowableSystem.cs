@@ -75,7 +75,7 @@ public class ResetThrowableSystem : SystemBase
                 velocity.Linear = new float3(0, 0, 0);
                 physicsVelocityGroup[dynamicEntity] = velocity;
                 ////remove velocity
-                commandBuffer.RemoveComponent(dynamicEntity, typeof(PhysicsMass));
+                commandBuffer.RemoveComponent<PhysicsMass>(dynamicEntity);
                 
             }
         }
