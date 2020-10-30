@@ -6,4 +6,5 @@ public struct ScoringCollider:IComponentData {
     public int score;
     public bool deleteOnScore;
     public Entity cup;
+    public Entity player;
 }
