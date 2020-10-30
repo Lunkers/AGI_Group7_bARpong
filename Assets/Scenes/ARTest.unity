@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0289f90d60279484e9ca8451fa5f2619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  table: {fileID: 4458543088851455350, guid: cfa5d8d866225427fae8f6313600e6a4, type: 3}
+  table: {fileID: 6652790057112066795, guid: a3fa37ffbe3797445b85a7161d43cbcc, type: 3}
   placementIndicator: {fileID: 301164090}
   ball: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
   tablePlacementState: {fileID: 1110261710}
@@ -560,6 +560,7 @@ GameObject:
   - component: {fileID: 1588424601}
   - component: {fileID: 1588424600}
   - component: {fileID: 1588424604}
+  - component: {fileID: 1588424605}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -680,3 +681,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
+--- !u!81 &1588424605
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588424598}
+  m_Enabled: 1

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6394926643788562507}
   - component: {fileID: 6394926643788562501}
   - component: {fileID: 6394926643788562500}
+  - component: {fileID: 9026271175118184310}
   m_Layer: 0
   m_Name: PhysicsPongBall
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6394926643788562502}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.8684676, z: -0, w: -0.49574584}
   m_LocalPosition: {x: 6.064588, y: 11.34178, z: -2.9735613}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 480.562, z: 0}
 --- !u!33 &6394926643788562505
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -273,3 +274,18 @@ MonoBehaviour:
   mass: 2.7
   thrown: 0
   camera: {fileID: 0}
+--- !u!114 &9026271175118184310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394926643788562502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19364e1b4a63ecb4a87b75728be691f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTable: 0
+  isCup: 0
+  AudioSource: {fileID: 4159877286479279790, guid: c555e881ab099b947ad5bd397c9d9929, type: 3}

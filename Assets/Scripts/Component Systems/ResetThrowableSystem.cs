@@ -6,7 +6,11 @@ using Unity.Mathematics;
 using Unity.Physics.Systems;
 using UnityEngine;
 
-[UpdateAfter(typeof(EndFramePhysicsSystem))] //update after simulation has ran for the frame
+
+
+//update after simulation has ran for the frame
+//[UpdateAfter(typeof(PlayCollisionAudioSystem))]
+[UpdateAfter(typeof(EndFramePhysicsSystem))]
 public class ResetThrowableSystem : SystemBase
 {
     BuildPhysicsWorld buildPhysicsWorld;

@@ -42,7 +42,7 @@ public class ThrowMotionSystem : SystemBase
             //add physics mass to entity
             t.thrown = true;
             entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
-        }).Run();
+        }).Run(); 
     }
 
     //resets the ball back to camera

@@ -18,5 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ARTest.unity
     guid: 9f9439684523c4ba9b08e0ecc62f52a6
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 7d6e613de210e97458a7c25eab243a6a, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a884d5732dafb4cdfbf408512b714244, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4de0ecfbe3515481382896dc550cd00d, type: 2}

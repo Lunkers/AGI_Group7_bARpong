@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARKit;
+#if UNITY_IOS
+        using UnityEngine.XR.ARKit;
+#endif
+
+
+
+
+
 
 public class ARCoach : MonoBehaviour
 {
@@ -10,17 +17,14 @@ public class ARCoach : MonoBehaviour
 
     void Start()
     {
-        session = FindObjectOfType<ARSession>();
-
+#if UNITY_IOS
         if (session.subsystem is ARKitSessionSubsystem)
         {
             var subsystem = (ARKitSessionSubsystem)session.subsystem;
             subsystem.requestedCoachingGoal = ARCoachingGoal.HorizontalPlane;
             subsystem.coachingActivatesAutomatically = true;
         }
-    }
 
-    void Update()
-    {
+#endif
     }
 }
