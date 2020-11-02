@@ -125,6 +125,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692294295110726846, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecdc677096af641e3beabc642c299e4c, type: 2}
     - target: {fileID: 7505615794407361213, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_PrimitiveSize.z
       value: 2
@@ -255,6 +259,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692294295110726846, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecdc677096af641e3beabc642c299e4c, type: 2}
     - target: {fileID: 7505615794407361213, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_PrimitiveSize.z
       value: 2
@@ -515,6 +523,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692294295110726846, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecdc677096af641e3beabc642c299e4c, type: 2}
     - target: {fileID: 7505615794407361213, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_PrimitiveSize.z
       value: 2
@@ -645,6 +657,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692294295110726846, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecdc677096af641e3beabc642c299e4c, type: 2}
     - target: {fileID: 7505615794407361213, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_PrimitiveSize.z
       value: 2
@@ -911,6 +927,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692294295110726846, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecdc677096af641e3beabc642c299e4c, type: 2}
     - target: {fileID: 7505615794407361213, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_PrimitiveSize.z
       value: 2
