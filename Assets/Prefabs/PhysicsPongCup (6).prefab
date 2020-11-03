@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763338535104507790}
-  - component: {fileID: 3014594010147351830}
-  - component: {fileID: 7505615794407361213}
+  - component: {fileID: 1614503259044486993}
+  - component: {fileID: 6658727530279084191}
   - component: {fileID: 8077316870757700162}
-  - component: {fileID: 5782586338689048770}
-  - component: {fileID: 3561860642797924889}
   - component: {fileID: 7115309843309959140}
+  - component: {fileID: 3803054383884743667}
+  - component: {fileID: 3326734188311497615}
   m_Layer: 0
   m_Name: PhysicsPongCup (6)
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3014594010147351830
+--- !u!114 &1614503259044486993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,35 +51,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShapeType: 31
   m_PrimitiveCenter:
-    x: 0
-    y: 0
-    z: 0
+    x: -0.025610626
+    y: 1.1804037
+    z: 0.00000017881393
   m_PrimitiveSize:
-    x: 1
-    y: 1
-    z: 1
+    x: 2.359446
+    y: 2.359446
+    z: 1.9964185
   m_PrimitiveOrientation:
     Value:
-      x: 0
+      x: 90
       y: 0
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 1
-    Radius: 0.5
+    Height: 1.9964185
+    Radius: 1.179723
     Axis: 2
   m_Cylinder:
-    Height: 1
-    Radius: 0.5
+    Height: 1.9964185
+    Radius: 1.179723
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 0.5
+  m_SphereRadius: 1.179723
   m_MinimumSkinnedVertexWeight: 0.038
   m_ConvexHullGenerationParameters:
-    m_SimplificationTolerance: 0.015
+    m_SimplificationTolerance: 0.035742994
     m_BevelRadius: 0.05
     m_MinimumAngle: 2.5000002
-  m_CustomMesh: {fileID: -8835032347309031165, guid: 5a4d2379ff7b74216b8a1755f0f4bacd, type: 3}
+  m_CustomMesh: {fileID: -5653745688140069915, guid: c5731f82cd0fe42448288222a3ae3b68, type: 3}
   m_ForceUnique: 1
   m_Material:
     m_SupportsTemplate: 1
@@ -196,7 +196,7 @@ MonoBehaviour:
       m_Value: 0
   m_SerializedVersion: 1
   m_ConvexRadius_Deprecated: -1
---- !u!114 &7505615794407361213
+--- !u!114 &6658727530279084191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,35 +211,35 @@ MonoBehaviour:
   m_ShapeType: 3
   m_PrimitiveCenter:
     x: 0
-    y: 0.2
+    y: 0.75
     z: 0
   m_PrimitiveSize:
-    x: 0.24
-    y: 0.24
-    z: 0.4
+    x: 1
+    y: 1
+    z: 1.5
   m_PrimitiveOrientation:
     Value:
       x: 90
       y: 0
-      z: 90.000015
+      z: 90
     RotationOrder: 4
   m_Capsule:
-    Height: 0.4
-    Radius: 0.12
+    Height: 1.5
+    Radius: 0.5
     Axis: 2
   m_Cylinder:
-    Height: 0.4
-    Radius: 0.12
+    Height: 1.5
+    Radius: 0.5
     Axis: 2
-  m_CylinderSideCount: 12
-  m_SphereRadius: 0.2
-  m_MinimumSkinnedVertexWeight: 0.1
+  m_CylinderSideCount: 10
+  m_SphereRadius: 0.75
+  m_MinimumSkinnedVertexWeight: 0.136
   m_ConvexHullGenerationParameters:
-    m_SimplificationTolerance: 0.01
-    m_BevelRadius: 0.04
+    m_SimplificationTolerance: 0.015
+    m_BevelRadius: 0.05
     m_MinimumAngle: 2.5000002
   m_CustomMesh: {fileID: 0}
-  m_ForceUnique: 0
+  m_ForceUnique: 1
   m_Material:
     m_SupportsTemplate: 1
     m_Template: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccea9ea98e38942e0b0938c27ed1903e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MotionType: 2
+  m_MotionType: 0
   m_Mass: 0.358
   m_LinearDamping: 0.01
   m_AngularDamping: 0.05
@@ -380,7 +380,7 @@ MonoBehaviour:
     y: 0
     z: 0
   m_GravityFactor: 1
-  m_OverrideDefaultMassDistribution: 0
+  m_OverrideDefaultMassDistribution: 1
   m_CenterOfMass:
     x: 0
     y: 0
@@ -404,34 +404,6 @@ MonoBehaviour:
     Tag05: 0
     Tag06: 0
     Tag07: 0
---- !u!114 &5782586338689048770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582094862035267397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa2a135184dab246b93fc8c0da2b933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resetThrowables: 1
---- !u!114 &3561860642797924889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582094862035267397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fe1f2354e2834889b2feed539be4ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 10
-  deleteOnScore: 1
-  cup: {fileID: 5178913366132725099}
 --- !u!114 &7115309843309959140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +417,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
+--- !u!114 &3803054383884743667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582094862035267397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe1f2354e2834889b2feed539be4ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 1
+  deleteOnScore: 1
+  cup: {fileID: 5178913366132725099}
+--- !u!114 &3326734188311497615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582094862035267397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa2a135184dab246b93fc8c0da2b933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetThrowables: 1
 --- !u!114 &974634314786738642
 MonoBehaviour:
   m_ObjectHideFlags: 0
