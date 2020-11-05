@@ -391,11 +391,12 @@ GameObject:
   m_Component:
   - component: {fileID: 578740794}
   - component: {fileID: 578740793}
-  - component: {fileID: 578740795}
   - component: {fileID: 578740796}
+  - component: {fileID: 578740799}
+  - component: {fileID: 578740795}
   - component: {fileID: 578740797}
   - component: {fileID: 578740798}
-  - component: {fileID: 578740799}
+  - component: {fileID: 578740800}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -501,6 +502,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PointCloudPrefab: {fileID: 0}
+--- !u!114 &578740800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578740792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0289f90d60279484e9ca8451fa5f2619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 4458543088851455350, guid: cfa5d8d866225427fae8f6313600e6a4, type: 3}
+  placementIndicator: {fileID: 301164090}
+  ball: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+  tablePlacementState: {fileID: 1110261710}
 --- !u!1 &817360279
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +529,6 @@ GameObject:
   - component: {fileID: 817360282}
   - component: {fileID: 817360281}
   - component: {fileID: 817360280}
-  - component: {fileID: 817360284}
   - component: {fileID: 817360283}
   - component: {fileID: 817360285}
   m_Layer: 0
@@ -575,22 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b6a6ef4fbd541d08c343040be1ee72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &817360284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817360279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0289f90d60279484e9ca8451fa5f2619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table: {fileID: 4458543088851455350, guid: cfa5d8d866225427fae8f6313600e6a4, type: 3}
-  placementIndicator: {fileID: 301164090}
-  ball: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
-  tablePlacementState: {fileID: 1110261710}
 --- !u!114 &817360285
 MonoBehaviour:
   m_ObjectHideFlags: 0
