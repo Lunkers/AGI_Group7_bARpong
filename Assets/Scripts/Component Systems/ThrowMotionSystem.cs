@@ -18,7 +18,7 @@ public class ThrowMotionSystem : SystemBase
     }
 
     //Adds physics properties to the throwables, and "launches" them
-    public void Launch()
+    public void Launch(float initialVelocity, float angle)
     {
         EntityManager entityManager = EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e, ref Throwable t, ref PhysicsCollider collider) =>
@@ -27,22 +27,24 @@ public class ThrowMotionSystem : SystemBase
             {
                 return;
             }
-            //debug to check input works
-            Debug.Log("Launching");
+            
             //add initial velocity
             //get camera direction
-            var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
+            var cameraData = Camera.main;
             var camDirection = cameraData.transform.forward;
-    
 
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
-                Linear = new float3(camDirection.x * t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), camDirection.z * t.initialVelocity * math.cos(t.angle))
+                Linear = new float3(camDirection.x * initialVelocity * math.cos(angle), initialVelocity * math.sin(angle), camDirection.z * initialVelocity * math.cos(angle))
             });
             //add physics mass to entity
             t.thrown = true;
             entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
         }).Run();
+    }
+
+    public void Launch(float3 vector)
+    {
     }
 
     //resets the ball back to camera

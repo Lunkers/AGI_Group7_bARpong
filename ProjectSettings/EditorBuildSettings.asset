@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ThrowDemonstration.unity
     guid: 71bbed2519674438ba0e2c2215222b0c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ARTest.unity
     guid: 9f9439684523c4ba9b08e0ecc62f52a6
+  - enabled: 1
+    path: Assets/Scenes/TestTouchInput.unity
+    guid: f36ad42496e744ec8bf97b1ccc18a961
   m_configObjects:
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a884d5732dafb4cdfbf408512b714244, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4de0ecfbe3515481382896dc550cd00d, type: 2}

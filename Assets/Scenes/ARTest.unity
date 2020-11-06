@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 817360280}
   - component: {fileID: 817360284}
   - component: {fileID: 817360283}
-  - component: {fileID: 817360285}
   m_Layer: 0
   m_Name: AR Session
   m_TagString: Untagged
@@ -396,19 +395,6 @@ MonoBehaviour:
   table: {fileID: 4458543088851455350, guid: cfa5d8d866225427fae8f6313600e6a4, type: 3}
   placementIndicator: {fileID: 301164090}
   ball: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
-  tablePlacementState: {fileID: 1110261710}
---- !u!114 &817360285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817360279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a8b6ca54bfd48008604ff0aa2bd07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   tablePlacementState: {fileID: 1110261710}
 --- !u!1 &884797897
 GameObject:
