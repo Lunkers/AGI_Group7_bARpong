@@ -22,7 +22,7 @@ public class TouchInputBehaviour : MonoBehaviour
 
 
         touch = Input.GetTouch(0);
-        if (tablePlacementState.isTablePlaced)
+        if (GameManager.instance.tablePlaced)
         {
             if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {

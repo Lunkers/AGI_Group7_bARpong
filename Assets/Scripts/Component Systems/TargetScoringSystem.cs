@@ -84,14 +84,14 @@ public class TargetScoringSystem : SystemBase
             //}
 
             // handle cup
-            var goalComponent = scoringColliderGroup[goalEntity];
+            ScoringCollider goalComponent = scoringColliderGroup[goalEntity];
             // TODO: implement scoring here
 
             //remove cup if it should be deleted;
             if (goalComponent.deleteOnScore)
             {
                 commandBuffer.DestroyEntity(goalComponent.cup);
-                commandBuffer.DestroyEntity(goalEntity);
+                commandBuffer.AddComponent(goalEntity, new DeleteTag()); // tag for score increment/deletion
                 
             }
         }
