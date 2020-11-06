@@ -43,10 +43,6 @@ public class ThrowMotionSystem : SystemBase
         }).Run();
     }
 
-    public void Launch(float3 vector)
-    {
-    }
-
     //resets the ball back to camera
     public void Reset()
     {

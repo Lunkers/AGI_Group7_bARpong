@@ -8,39 +8,36 @@ public class SwipeThrowSystem : ComponentSystem
 {
     protected override void OnUpdate()
     {
-        Entities.WithAll<Throwable>().ForEach((ref LocalToWorld localToWorld, ref Translation translation, ref Throwable throwable) =>
+        Entities.WithAll<Throwable>().ForEach((ref LocalToWorld localToWorld, ref Translation translation, ref Rotation rotation, ref Throwable throwable) =>
         {
-            // Kan optimeras genom att flytta ut saker ur foreachen
             if (Input.touchCount > 0 && !throwable.thrown)
             {
                 var touch = Input.GetTouch(0);
                 var velocityScreen = touch.deltaPosition / touch.deltaTime;
                 var velocityWorld = Camera.main.ScreenToWorldPoint(new Vector3(velocityScreen.x, velocityScreen.y, localToWorld.Position.z));
 
-                var newObjectPosition = GetObjectPositionFromTouch(localToWorld.Position, touch);
- 
-                if (touch.phase == TouchPhase.Began)
+                if (touch.phase == TouchPhase.Began && TouchOnObject(touch))
                 {
                     throwable.grabbed = true;
                 }
-                
-                if (throwable.grabbed && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
+                else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) && throwable.grabbed)
                 {
                     var throwVelocity = Mathf.Max(0.0f, velocityWorld.y) * 3.0f;
                     Debug.Log(throwVelocity + " m/s");
-                    throwable.grabbed = false;
                     var throwMotionSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
+                    throwable.grabbed = false;
                     throwMotionSystem.Launch(throwVelocity, (float)Math.PI / 4.0f);
-                }
-                else if (throwable.grabbed)
-                {
-                    translation.Value = newObjectPosition;
                 }
             }
         });
     }
 
     private bool MouseOnObject()
+    {
+        return true;
+    }
+
+    private bool TouchOnObject(Touch touch)
     {
         return true;
     }

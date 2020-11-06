@@ -67,9 +67,7 @@ public class TablePlacer : MonoBehaviour
         var rotation = Quaternion.LookRotation(cameraBearing);
 
         Instantiate(table, placementPose.position, rotation);
-        var ballObject = Instantiate(ball);
-        var swipeThrower = gameObject.AddComponent<SwipeThrower>();
-        swipeThrower.objectToThrow = ballObject;
+        Instantiate(ball);
 
         Destroy(this);
     }
