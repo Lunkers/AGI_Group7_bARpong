@@ -11,7 +11,6 @@ public class TablePlacer : MonoBehaviour
     public GameObject table;
     public GameObject placementIndicator;
     public GameObject ball;
-    public TablePlacementState tablePlacementState;
 
 
     private ARPlaneManager planeManager;
@@ -65,17 +64,17 @@ public class TablePlacer : MonoBehaviour
         var cameraForward = Camera.current.transform.forward;
         var cameraBearing = new Vector3(cameraForward.x, 0.0f, cameraForward.z).normalized;
         var rotation = Quaternion.LookRotation(cameraBearing);
-
+        Instantiate(ball, placementPose.position, rotation);
         Instantiate(table, placementPose.position, rotation);
-        Instantiate(ball);
-        
+         
         Destroy(this);
     }
 
     private void UpdatePlacementPose()
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.2f));
-        raycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon);
+        var hits = new List<ARRaycastHit>();
+        raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
         validPose = hits.Count > 0;
 
         if (validPose)
@@ -108,9 +107,6 @@ public class TablePlacer : MonoBehaviour
 
     private void OnDestroy() {
         //set state on destruction
-        placementIndicator.SetActive(false);
-        tablePlacementState.isTablePlaced = true;
+        GameManager.instance.tablePlaced = true;
     }
-
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 }

@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 0
-  initialVelocity: 3
+  initialVelocity: 5
   mass: 2.7
   thrown: 0
   camera: {fileID: 0}

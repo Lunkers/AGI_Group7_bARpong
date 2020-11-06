@@ -20,7 +20,7 @@ public class ThrowMotionSystem : SystemBase
     //Adds physics properties to the throwables, and "launches" them
     public void Launch()
     {
-        EntityManager entityManager = EntityManager;
+        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e, ref Throwable t, ref PhysicsCollider collider) =>
         {
             if (t.thrown)
@@ -31,7 +31,8 @@ public class ThrowMotionSystem : SystemBase
             Debug.Log("Launching");
             //add initial velocity
             //get camera direction
-            var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
+            Camera cameraData = Camera.main;
+            //var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
     
 
@@ -48,7 +49,7 @@ public class ThrowMotionSystem : SystemBase
     //resets the ball back to camera
     public void Reset()
     {
-        EntityManager entityManager = EntityManager;
+        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e,ref PhysicsVelocity velocity, ref Throwable throwable) =>
         {
             if (throwable.thrown)
