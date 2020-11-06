@@ -77,8 +77,7 @@ public class TablePlacer : MonoBehaviour
     private void UpdatePlacementPose()
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.2f));
-        var hits = new List<ARRaycastHit>();
-        raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
+        raycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon);
         validPose = hits.Count > 0;
 
         if (validPose)
@@ -111,6 +110,9 @@ public class TablePlacer : MonoBehaviour
 
     private void OnDestroy() {
         //set state on destruction
+        placementIndicator.SetActive(false);
         tablePlacementState.isTablePlaced = true;
     }
+
+    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 }
