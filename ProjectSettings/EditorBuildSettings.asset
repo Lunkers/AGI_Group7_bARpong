@@ -21,5 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TestTouchInput.unity
     guid: f36ad42496e744ec8bf97b1ccc18a961
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: be6999647a167004aa9d9957fa3da886, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a884d5732dafb4cdfbf408512b714244, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4de0ecfbe3515481382896dc550cd00d, type: 2}
