@@ -500,7 +500,6 @@ GameObject:
   - component: {fileID: 578740796}
   - component: {fileID: 578740799}
   - component: {fileID: 578740795}
-  - component: {fileID: 578740797}
   - component: {fileID: 578740798}
   - component: {fileID: 578740800}
   m_Layer: 0
@@ -565,20 +564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
---- !u!114 &578740797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578740792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15f82cc229284894964d2d30806969d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HumanSegmentationStencilMode: 1
-  m_HumanSegmentationDepthMode: 1
 --- !u!114 &578740798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1036,7 @@ GameObject:
   - component: {fileID: 1588424601}
   - component: {fileID: 1588424600}
   - component: {fileID: 1588424604}
+  - component: {fileID: 1588424605}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -1172,3 +1158,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
+--- !u!114 &1588424605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588424598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15f82cc229284894964d2d30806969d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HumanSegmentationStencilMode: 1
+  m_HumanSegmentationDepthMode: 1
