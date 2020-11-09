@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         curScore = curScore -1;
         DisplayScore();
         if(curScore == 0){
+            // disable fixed rate before scene switch to avoid crashes
+            FixedRateUtils.DisableFixedRate(World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SimulationSystemGroup>());
             //DESTROY BALL
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             em.DestroyEntity(em.UniversalQuery);
