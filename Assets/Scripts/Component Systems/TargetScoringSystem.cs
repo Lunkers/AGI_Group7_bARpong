@@ -6,7 +6,8 @@ using Unity.Mathematics;
 using Unity.Physics.Systems;
 using UnityEngine;
 
-[UpdateAfter(typeof(EndFramePhysicsSystem))] //update after simulation has been run for the frame
+[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+[UpdateAfter(typeof(EndFramePhysicsSystem))] // run after simulation is done for frame
 public class TargetScoringSystem : SystemBase
 {
     BuildPhysicsWorld buildPhysicsWorld;

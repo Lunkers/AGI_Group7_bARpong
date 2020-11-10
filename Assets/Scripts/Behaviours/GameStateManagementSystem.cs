@@ -10,7 +10,7 @@ public enum GameStates
     Lost
 }
 
-[UpdateAfter(typeof(TargetScoringSystem))] //update after score checking
+[UpdateAfter(typeof(FixedStepSimulationSystemGroup))] //update after score checking
 public class GameStateManagementSystem : SystemBase
 {
 

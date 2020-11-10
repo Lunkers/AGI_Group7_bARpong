@@ -6,7 +6,8 @@ using Unity.Mathematics;
 using Unity.Physics.Systems;
 using UnityEngine;
 
-[UpdateAfter(typeof(EndFramePhysicsSystem))] //update after simulation has ran for the frame
+[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))] //update after simulation has ran for the frame
+[UpdateAfter(typeof(EndFramePhysicsSystem))] // run after simulation is done for frame
 public class ResetThrowableSystem : SystemBase
 {
     BuildPhysicsWorld buildPhysicsWorld;

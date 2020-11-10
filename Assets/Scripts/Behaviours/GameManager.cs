@@ -31,7 +31,13 @@ public class GameManager : MonoBehaviour
         DisplayScore();
     }
     private void DisplayScore(){
-        scoreText.text = $"Cups left: { World.DefaultGameObjectInjectionWorld}";
+        if (scoreText)
+            scoreText.text = $"Cups left: { curScore}";
+    }
+
+    private void Update() {
+        //TODO: add code for unity fixed timestep here
+        //should match server tick rate when we get photon going    
     }
 
     public void IncreaseScore() {
@@ -39,7 +45,7 @@ public class GameManager : MonoBehaviour
         DisplayScore();
         if(curScore == 0){
             // disable fixed rate before scene switch to avoid crashes
-            FixedRateUtils.DisableFixedRate(World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SimulationSystemGroup>());
+            //FixedRateUtils.DisableFixedRate(World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SimulationSystemGroup>());
             //DESTROY BALL
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             em.DestroyEntity(em.UniversalQuery);
