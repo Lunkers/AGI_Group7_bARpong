@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public void StartNonARDemo()
+    public void StartGameScene()
     {
         SceneManager.LoadScene(1); //Numret här är numret i queuen under build settings
 
