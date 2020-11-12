@@ -91,6 +91,7 @@ public class TargetScoringSystem : SystemBase
             //remove cup if it should be deleted;
             if (goalComponent.deleteOnScore)
             {
+                //commandBuffer.DestroyEntity(goalComponent.water);
                 commandBuffer.DestroyEntity(goalComponent.cup);
                 commandBuffer.AddComponent(goalEntity, new DeleteTag()); // tag for score increment/deletion
                 
