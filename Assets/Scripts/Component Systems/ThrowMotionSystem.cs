@@ -3,6 +3,7 @@ using Unity.Jobs;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.GraphicsIntegration;
 using UnityEngine;
 
 /**
@@ -55,6 +56,9 @@ public class ThrowMotionSystem : SystemBase
             //add physics mass to entity
             t.thrown = true;
             entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
+            entityManager.AddComponentData(e, new PhysicsGraphicalSmoothing {
+                ApplySmoothing = 1,
+            });
         }).Run();
     }
 
