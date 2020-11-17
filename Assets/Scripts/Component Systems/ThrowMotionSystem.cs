@@ -3,6 +3,7 @@ using Unity.Jobs;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.GraphicsIntegration;
 using UnityEngine;
 
 /**
@@ -14,6 +15,18 @@ public class ThrowMotionSystem : SystemBase
 
     protected override void OnUpdate()
     {
+        //check for throwables with 0 velocity, and reset them
+        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        Entities.WithAll<ResetTag>().WithStructuralChanges().ForEach((ref Entity e, ref PhysicsVelocity velocity, ref Throwable throwable) =>
+        {
+            if (throwable.thrown)
+            {
+                throwable.thrown = !throwable.thrown;
+                entityManager.RemoveComponent(e, typeof(PhysicsMass));
+                entityManager.RemoveComponent(e, typeof(ResetTag));
+                velocity.Linear = new float3(0, 0, 0);
+            }
+        }).Run();
         return;
     }
 
@@ -34,7 +47,7 @@ public class ThrowMotionSystem : SystemBase
             Camera cameraData = Camera.main;
             //var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
-    
+
 
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
@@ -43,6 +56,9 @@ public class ThrowMotionSystem : SystemBase
             //add physics mass to entity
             t.thrown = true;
             entityManager.AddComponentData(e, PhysicsMass.CreateDynamic(collider.MassProperties, t.mass / 1000));
+            entityManager.AddComponentData(e, new PhysicsGraphicalSmoothing {
+                ApplySmoothing = 1,
+            });
         }).Run();
     }
 
@@ -50,12 +66,12 @@ public class ThrowMotionSystem : SystemBase
     public void Reset()
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        Entities.WithStructuralChanges().ForEach((ref Entity e,ref PhysicsVelocity velocity, ref Throwable throwable) =>
+        Entities.WithStructuralChanges().ForEach((ref Entity e, ref PhysicsVelocity velocity, ref Throwable throwable) =>
         {
             if (throwable.thrown)
             {
                 throwable.thrown = !throwable.thrown;
-                EntityManager.RemoveComponent(e, typeof(PhysicsMass));
+                entityManager.RemoveComponent(e, typeof(PhysicsMass));
                 velocity.Linear = new float3(0, 0, 0);
             }
         }).Run();
