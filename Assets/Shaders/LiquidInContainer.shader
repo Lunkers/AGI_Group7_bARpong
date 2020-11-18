@@ -1,140 +1,123 @@
 ﻿Shader "Custom/LiquidInContainer"
 {
-    // Shader for making somewhat realistic liquid in a container
-    // Based on https://www.youtube.com/watch?v=dFv8lM-kS4E
+    // Shader for liquid in a container
+    // Based on https://twitter.com/minionsart/status/986374665399685121
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-
-        _BumpMap ("Normal map of top of liquid", 2D) = "bump" {}
-        _BumpStrength ("Normal map strength", float) = 1
-        _BumpMapInner ("Inner normal map", 2D) = "bump"{}
-        _BumpInnerStrength("Inner normal strength", float) = 1
-        _TopColor("Top section color", Color) = (1,1,1,1)
-
-        _Ruffle ("Ruffle strength", float) = 10
-        _PlanePosition("Cutoff plane position", Vector) = (0,0,0,1)
-        _PlaneNormal("Cutoff plane normal", Vector) = (0,1,0,0) 
+       	_Tint ("Tint", Color) = (1,1,1,1)
+		_MainTex ("Texture", 2D) = "white" {}
+        _FillAmount ("Fill Amount", Range(-10,10)) = 0.0
+		[HideInInspector] _WobbleX ("WobbleX", Range(-1,1)) = 0.0
+		[HideInInspector] _WobbleZ ("WobbleZ", Range(-1,1)) = 0.0
+        _TopColor ("Top Color", Color) = (1,1,1,1)
+		_FoamColor ("Foam Line Color", Color) = (1,1,1,1)
+        _Rim ("Foam Line Width", Range(0,0.1)) = 0.0    
+		_RimColor ("Rim Color", Color) = (1,1,1,1)
+	    _RimPower ("Rim Power", Range(0,10)) = 0.0
     }
     SubShader
     {
-        Tags { "Queue"="Geometry" }
-
-
-        CGINCLUDE
-
-        float3 _PlaneNormal;
-        float3 _PlanePosition;
+        Tags {"Queue" = "Geometry" "DisableBatching" = "True"}
+        Pass {
+            ZWrite On
+            Cull Off //front and back faces are needed
+            AlphaToMask On //Transparency
         
-        // determine if geometry should be visible or not
-        bool checkVisibility(float3 worldPosition) {
-            //dot product between world position of vertex and plane normal
-            float dotWorldPlane = dot(worldPosition - _PlanePosition, _PlaneNormal);
-            return dotWorldPlane > 0; //return wether or not the world position is culled by the plane
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata {
+                float4 vertex: POSITION;
+                float2 uv: TEXCOORD0;
+                float3 normal: NORMAL;
+            };
+
+            struct v2f {
+                float2 uv: TEXCOORD0;
+                float4 vertex: SV_POSITION;
+                float3 viewDir: COLOR;
+                float3 normal: COLOR2;
+                float fillEdge: TEXCOORD2;
+                
+            };
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            float _FillAmount, _WobbleX, _WobbleZ;
+            float4 _TopColor, _RimColor, _FoamColor, _Tint;
+            float _Rim, _RimPower;
+
+            //rotate a vertex theta degrees around the y-axis
+            float4 RotateAroundYInDegrees (float4 vertex, float degrees) {
+                float alpha = degrees * UNITY_PI / 180; //convert to radians
+                float sina, cosa;
+                sincos(alpha, sina, cosa);
+                float2x2 m = float2x2(cosa, sina, -sina, cosa); //rotation matrix
+                return float4(vertex.yz, mul(m, vertex.xz)).xzyw; //return vertex rotated around y-axis
+            }
+
+            // OwO what's this
+            v2f vert (appdata v) {
+                v2f o; //output
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
+                //get world position of vertex
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex.xyz);
+                //rotate it around Y
+                float3 worldPosX = RotateAroundYInDegrees(float4(worldPos, 0), 360);
+                //rotate around XZ
+                float3 worldPosZ = float3(worldPosX.y, worldPosX.z, worldPosX.x);
+
+                //combine rotations with worldPos, using wobble
+                float3 worldPosAdjusted = worldPos + (worldPosX * _WobbleX) + (worldPosZ * _WobbleZ);
+
+                //how high up should the liquid be
+                o.fillEdge = worldPos.y + _FillAmount;
+
+                o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
+                o.normal = v.normal;
+                return o;
+            }
+            fixed4 frag (v2f i, fixed facing: VFACE) :SV_Target {
+                // sample the texture
+                fixed4 col = tex2D(_MainTex, i.uv) * _Tint;
+
+
+                //rim light
+                float dotProduct = 1 - pow(dot(i.normal, i.viewDir), _RimPower);
+
+                float4 RimResult = smoothstep(0.5, 1.0, dotProduct);
+                RimResult *= _RimColor;
+
+                //foam edge
+                float4 foam = (step(i.fillEdge, 0.5) - step(i.fillEdge, (0.5 - _Rim)));
+
+                float4 foamColored = foam * (_FoamColor * 0.9);
+
+                //rest of the liquid
+                float4 result = step(i.fillEdge, 0.5) - foam;
+                float4 resultColored = result * col;
+
+                //add together
+                float4 finalResult = resultColored + foamColored;
+
+                finalResult.rgb += RimResult;
+
+                //color for backfaces and top
+                float4 topColor = _TopColor * (foam + result);
+
+                //VFACE returns positive if front facing, negative for backfacing
+
+                return facing > 0 ? finalResult : topColor;
+            }
+            ENDCG
+
         }
-
-        ENDCG
-
-        GrabPass {
-            "_GrabTexture"
-        }
-
-       Cull Front //render backside geometry
-       CGPROGRAM
-       #pragma surface surf Standard addshadow
-       #pragma vertex vert
-       #pragma target 3.0
-
-       struct Input {
-           half2 uv_Tex;
-           float3 worldPos;
-           float4 screenPos;
-           float3 normal;
-           float3 viewDir;
-           float3 worldNormal;
-           float4 grabUV;
-           INTERNAL_DATA
-       };
-
-       sampler2D _MainTex;
-       sampler2D _BumpMap;
-       sampler2D _GrabTexture;
-       fixed4 _Color;
-       fixed4 _TopColor;
-       float _BumpStrength;
-       half _Glossiness;
-       half _Metallic;
-       float _RotationSpeed;
-
-       void vert (inout appdata_full v, out Input o) {
-           UNITY_INITIALIZE_OUTPUT(Input, o);
-           float4 pos = UnityObjectToClipPos(v.vertex);
-           o.grabUV = ComputeGrabScreenPos(pos); 
-       }
-
-       void surf (Input IN, inout SurfaceOutputStandard o ) {
-           if (checkVisibility(IN.worldPos)) discard; //remove parts that shouldn't be visible
-
-           float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
-           screenUV *= float2(8,6);
-
-           float4 background = tex2Dproj( _GrabTexture, IN.grabUV) * _TopColor;
-           o.Albedo = lerp(background.rgb, _TopColor.rgb, _TopColor.a);
-           
-            half3 worldT = WorldNormalVector(IN, half3(1,0,0));
-            half3 worldB = WorldNormalVector(IN, half3(0,1,0));
-            half3 worldN = WorldNormalVector(IN, half3(0,0,1));
-            half3x3 world2Tangent = half3x3(worldT, worldB, worldN);
-		
-            o.Normal = mul(world2Tangent, _PlaneNormal);
-           o.Metallic = _Metallic;
-           o.Smoothness = _Glossiness;
-       }
-
-       ENDCG
-
-       Cull Back
-       
-       CGPROGRAM
-       #pragma surface surf Standard addshadow
-       #pragma vertex vert
-       #pragma target 3.0
-
-       sampler2D _MainTex;
-       sampler2D _BumpMapInner;
-       sampler2D _GrabTexture;
-       float _BumpStrengthInner;
-
-       struct Input {
-           float2 uv_MainTex;
-           float2 uv_BumpMapInner;
-           float3 worldPos;
-           float4 screenPos;
-           float4 grabUV;
-       };
-
-       half _Glossiness;
-       half _Metallic;
-       fixed4 _Color;
-       fixed4 _TopColor;
-
-       void vert (inout appdata_full v, out Input o) {
-           UNITY_INITIALIZE_OUTPUT(Input, o);
-           float pos = UnityObjectToClipPos(v.vertex);
-           o.grabUV = ComputeGrabScreenPos(pos);
-       }
-
-       void surf(Input IN, inout SurfaceOutputStandard o) {
-           float4 background = tex2Dproj(_GrabTexture, IN.grabUV) * _Color;
-           o.Albedo = lerp(background.rgb, _Color.rgb, _Color.a);
-
-           o.Metallic = _Metallic;
-           o.Smoothness = _Glossiness;
-           o.Normal= UnpackScaleNormal(tex2D (_BumpMapInner, IN.uv_BumpMapInner), _BumpStrengthInner);
-       }
-        ENDCG
+        
     }
 }
