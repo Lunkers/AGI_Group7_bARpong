@@ -142,7 +142,7 @@ MonoBehaviour:
     m_Restitution:
       m_Override: 0
       m_Value:
-        Value: 0.8
+        Value: 0.76
         CombineMode: 2
     m_BelongsToCategories:
       m_Override: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 0
-  initialVelocity: 5
+  initialVelocity: 3
   mass: 2.7
   thrown: 0
   camera: {fileID: 0}

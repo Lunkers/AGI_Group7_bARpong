@@ -8,12 +8,12 @@ using Unity.Physics.Systems;
 public class ResetStoppedThrowableSystem : SystemBase
 {
     EndFixedStepSimulationEntityCommandBufferSystem bufferSystem;
-    static float3 velocityLimit;
+    static readonly float3 velocityLimit = new float3(0.1f, 0.1f, 0.1f);
 
     protected override void OnCreate()
     {
         bufferSystem = World.GetOrCreateSystem<EndFixedStepSimulationEntityCommandBufferSystem>();
-        velocityLimit = new float3(0.1f, 0.1f, 0.1f);
+       
     }
     protected override void OnUpdate()
     {
