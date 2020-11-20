@@ -77,7 +77,7 @@
                 float3 worldPosAdjusted = worldPos + (worldPosX * _WobbleX) + (worldPosZ * _WobbleZ);
 
                 //how high up should the liquid be
-                o.fillEdge = worldPos.y + _FillAmount;
+                o.fillEdge = worldPosAdjusted.y + _FillAmount;
 
                 o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
                 o.normal = v.normal;
