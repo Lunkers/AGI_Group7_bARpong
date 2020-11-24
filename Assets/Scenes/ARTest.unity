@@ -559,7 +559,6 @@ GameObject:
   - component: {fileID: 817360281}
   - component: {fileID: 817360280}
   - component: {fileID: 817360283}
-  - component: {fileID: 817360285}
   m_Layer: 0
   m_Name: AR Session
   m_TagString: Untagged
@@ -620,19 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b6a6ef4fbd541d08c343040be1ee72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &817360285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817360279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a8b6ca54bfd48008604ff0aa2bd07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tablePlacementState: {fileID: 1110261710}
 --- !u!1 &884797897
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +962,7 @@ GameObject:
   - component: {fileID: 1588424600}
   - component: {fileID: 1588424604}
   - component: {fileID: 1588424605}
+  - component: {fileID: 1588424606}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -1113,3 +1100,15 @@ MonoBehaviour:
   m_HumanSegmentationDepthMode: 1
   m_EnvironmentDepthMode: 2
   m_OcclusionPreferenceMode: 1
+--- !u!114 &1588424606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588424598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758cb25db11aa434d99351107713a3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
