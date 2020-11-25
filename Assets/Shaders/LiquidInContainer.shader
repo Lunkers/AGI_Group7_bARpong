@@ -2,6 +2,7 @@
 {
     // Shader for liquid in a container
     // Based on https://twitter.com/minionsart/status/986374665399685121
+    // and https://github.com/CaptainProton42/LiquidContainerDemo/blob/master/assets/shaders/liquid.shader
     Properties
     {
        	_Tint ("Tint", Color) = (1,1,1,1)
@@ -14,10 +15,13 @@
         _Rim ("Foam Line Width", Range(0,0.1)) = 0.0    
 		_RimColor ("Rim Color", Color) = (1,1,1,1)
 	    _RimPower ("Rim Power", Range(0,10)) = 0.0
+        _Height("Height",Float) = 0.32
+        _Width("Width", Float) = 0.1
     }
+    //TODO: Write multiple passes
     SubShader
     {
-        Tags {"Queue" = "Geometry" "DisableBatching" = "True"}
+        Tags {"Queue" = "Geometry" "DisableBatching" = "True" }
         Pass {
             ZWrite On
             Cull Off //front and back faces are needed
@@ -42,14 +46,15 @@
                 float3 viewDir: COLOR;
                 float3 normal: COLOR2;
                 float fillEdge: TEXCOORD2;
-                
+                float3 worldPos: TEXCOORD3;
+                half3 worldNormal: TEXCOORD4; 
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _FillAmount, _WobbleX, _WobbleZ;
             float4 _TopColor, _RimColor, _FoamColor, _Tint;
-            float _Rim, _RimPower;
+            float _Rim, _RimPower, _Width, _Height;
 
             //rotate a vertex theta degrees around the y-axis
             float4 RotateAroundYInDegrees (float4 vertex, float degrees) {
@@ -60,7 +65,6 @@
                 return float4(vertex.yz, mul(m, vertex.xz)).xzyw; //return vertex rotated around y-axis
             }
 
-            // OwO what's this
             v2f vert (appdata v) {
                 v2f o; //output
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -68,31 +72,35 @@
 
                 //get world position of vertex
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex.xyz);
-                //rotate it around Y
-                float3 worldPosX = RotateAroundYInDegrees(float4(worldPos, 0), 360);
-                //rotate around XZ
-                float3 worldPosZ = float3(worldPosX.y, worldPosX.z, worldPosX.x);
+                //get world space direction of up vector
+                float d = dot(float3(unity_ObjectToWorld[0][1], unity_ObjectToWorld[1][1], unity_ObjectToWorld[2][1]), float3(0,1,0));
+                float m = lerp(_Width, _Height, abs(d));
 
                 //combine rotations with worldPos, using wobble
-                float3 worldPosAdjusted = worldPos + (worldPosX * _WobbleX) + (worldPosZ * _WobbleZ);
+                //float3 worldPosAdjusted = worldPos + (worldPosX * _WobbleX) + (worldPosZ * _WobbleZ);
 
                 //how high up should the liquid be
-                o.fillEdge = worldPosAdjusted.y + _FillAmount;
-
+                // TODO: 
+                o.fillEdge = _FillAmount * m;
+                
+                o.worldPos = worldPos;
+                o.worldNormal = UnityObjectToWorldNormal(v.vertex);
                 o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
-                o.normal = v.normal;
+                o.normal =  v.normal; 
                 return o;
             }
             fixed4 frag (v2f i, fixed facing: VFACE) :SV_Target {
+                if(i.worldPos.y > i.fillEdge){
+                    discard;
+                }
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv) * _Tint;
-
-
                 //rim light
                 float dotProduct = 1 - pow(dot(i.normal, i.viewDir), _RimPower);
 
                 float4 RimResult = smoothstep(0.5, 1.0, dotProduct);
                 RimResult *= _RimColor;
+
 
                 //foam edge
                 float4 foam = (step(i.fillEdge, 0.5) - step(i.fillEdge, (0.5 - _Rim)));
@@ -103,21 +111,24 @@
                 float4 result = step(i.fillEdge, 0.5) - foam;
                 float4 resultColored = result * col;
 
-                //add together
-                float4 finalResult = resultColored + foamColored;
 
-                finalResult.rgb += RimResult;
+                //add together
+                //float4 finalResult = resultColored + foamColored;
+                //finalResult.rgb += RimResult;
+                float4 finalResult = col;
 
                 //color for backfaces and top
                 float4 topColor = _TopColor * (foam + result);
 
                 //VFACE returns positive if front facing, negative for backfacing
-
+                
                 return facing > 0 ? finalResult : topColor;
             }
+            //TODO custom lighting
             ENDCG
 
         }
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
         
     }
 }

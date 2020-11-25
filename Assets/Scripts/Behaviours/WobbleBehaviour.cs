@@ -18,6 +18,7 @@ public class WobbleBehaviour : MonoBehaviour
     float wobbleAmountToAddZ;
     float pulse;
     float time = 0.5f;
+    Vector3 wobbleVec = new Vector3(0f, 0f, 0.05f);
     
     // Use this for initialization
     void Start()
@@ -35,6 +36,7 @@ public class WobbleBehaviour : MonoBehaviour
         pulse = 2 * Mathf.PI * WobbleSpeed;
         wobbleAmountX = wobbleAmountToAddX * Mathf.Sin(pulse * time);
         wobbleAmountZ = wobbleAmountToAddZ * Mathf.Sin(pulse * time);
+        transform.Rotate(pulse * wobbleVec);
  
         // send it to the shader
         rend.material.SetFloat("_WobbleX", wobbleAmountX);
