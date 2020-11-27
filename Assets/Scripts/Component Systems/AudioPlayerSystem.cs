@@ -2,26 +2,21 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-public enum GameStates
-{
-    Placing,
-    Playing,
-    Won,
-    Lost
-}
+
 
 [UpdateAfter(typeof(FixedStepSimulationSystemGroup))] //update after score checking
-public class GameStateManagementSystem : SystemBase
+public class AudioPlayerSystem : SystemBase
 {
 
     protected override void OnUpdate() 
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        Entities.WithAll<DeleteTag>().WithStructuralChanges().ForEach((Entity e) =>
+        Entities.WithAll<AudioPlayTag>().WithStructuralChanges().ForEach((Entity e) =>
         {
-            GameManager.instance.IncreaseScore();
-            
-            entityManager.DestroyEntity(e);
+            AudioSource audioSource = entityManager.GetComponentObject<AudioSource>(e);
+            audioSource.Play();
+            entityManager.RemoveComponent<AudioPlayTag>(e);
+            //entityManager.DestroyEntity(e);
         }).Run();
 
         // commandBuffer.Playback(EntityManager);
