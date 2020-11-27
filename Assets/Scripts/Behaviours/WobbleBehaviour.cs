@@ -36,7 +36,7 @@ public class WobbleBehaviour : MonoBehaviour
         pulse = 2 * Mathf.PI * WobbleSpeed;
         wobbleAmountX = wobbleAmountToAddX * Mathf.Sin(pulse * time);
         wobbleAmountZ = wobbleAmountToAddZ * Mathf.Sin(pulse * time);
-        transform.Rotate(pulse * wobbleVec);
+        transform.Rotate(pulse * wobbleVec, Space.World);
  
         // send it to the shader
         rend.material.SetFloat("_WobbleX", wobbleAmountX);

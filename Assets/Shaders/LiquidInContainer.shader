@@ -18,7 +18,7 @@
         _Height("Height",Float) = 0.32
         _Width("Width", Float) = 0.1
     }
-    //TODO: Write multiple passes
+    //TODO: Rewrite to surface shader????
     SubShader
     {
         Tags {"Queue" = "Geometry" "DisableBatching" = "True" }
