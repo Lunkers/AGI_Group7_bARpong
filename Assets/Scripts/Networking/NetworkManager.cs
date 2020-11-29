@@ -62,7 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     //When opponent has joined
-    public override void OnJoinedRoom() //fortsätt här - pröva med OnJoinLobby() 
+    public override void OnJoinedRoom() 
     {
         Debug.Log("Client successfully joined a room.");
 
@@ -92,7 +92,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient) 
             {
                 try {
-                    PhotonNetwork.LoadLevel("ARTest_Multiplayer");
+                    PhotonNetwork.LoadLevel("SampleScene");
                 } 
                 catch (Exception e)  {
                     error.text = e.ToString();

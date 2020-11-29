@@ -8,7 +8,7 @@ using Photon.Realtime;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class MultiplayerTablePlacer : MonoBehaviourPunCallbacks
+public class TablePlacerMulti : MonoBehaviourPunCallbacks
 {
     public GameObject table;
     public GameObject placementIndicator;
@@ -67,7 +67,7 @@ public class MultiplayerTablePlacer : MonoBehaviourPunCallbacks
     {
         //if 1st player -> en kamera med en position på ena sidan
         //if (PhotonNetwork.PlayerList)
-        return PhotonNetwork.Instantiate(camerPrefab.name, Vector3.zero, Quaternion.identity, 0);
+        return PhotonNetwork.Instantiate(cameraPrefab.name, Vector3.zero, Quaternion.identity, 0);
         //cameraPrefab.transform.SetParent(gameObject.transform);
     }
 
