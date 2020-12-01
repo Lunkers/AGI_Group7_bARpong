@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6394926643788562505}
   - component: {fileID: 6394926643788562506}
   - component: {fileID: 6394926643788562507}
-  - component: {fileID: 7803721618137544465}
   - component: {fileID: 6394926643788562501}
   - component: {fileID: 6394926643788562500}
+  - component: {fileID: 1152040369794714264}
   m_Layer: 0
   m_Name: PhysicsPongBall
   m_TagString: Untagged
@@ -228,7 +228,37 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!82 &7803721618137544465
+--- !u!114 &6394926643788562501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394926643788562502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
+--- !u!114 &6394926643788562500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394926643788562502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2403ebb825c5465a965c3cb3484c58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  initialVelocity: 3
+  mass: 2.7
+  thrown: 0
+  camera: {fileID: 0}
+--- !u!82 &1152040369794714264
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +268,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eca2c1a0c1b494e6da53abcb46b5c5f4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -324,33 +354,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6394926643788562501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6394926643788562502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 1
---- !u!114 &6394926643788562500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6394926643788562502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2403ebb825c5465a965c3cb3484c58c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angle: 0
-  initialVelocity: 3
-  mass: 2.7
-  thrown: 0
-  camera: {fileID: 0}

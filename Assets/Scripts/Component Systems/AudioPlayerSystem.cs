@@ -11,9 +11,11 @@ public class AudioPlayerSystem : SystemBase
     protected override void OnUpdate() 
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        Entities.WithAll<AudioPlayTag>().WithStructuralChanges().ForEach((Entity e) =>
+        Entities.WithAll<AudioPlayTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audioSource) =>
         {
-            AudioSource audioSource = entityManager.GetComponentObject<AudioSource>(e);
+            Debug.Log("Entity with audio play tag");
+            Debug.Log(e);
+            Debug.Log("Should play sound");
             audioSource.Play();
             entityManager.RemoveComponent<AudioPlayTag>(e);
             //entityManager.DestroyEntity(e);
