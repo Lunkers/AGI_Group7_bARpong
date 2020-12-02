@@ -8,7 +8,7 @@ public sealed class GameSettings
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitializeWithScene()
     {
-        var audioCollectionGO = GameObject.Find("AudioCollection");
+        var audioCollectionGO = GameObject.Find("Audio Collection");
         if(audioCollectionGO != null){
             audioCollection = audioCollectionGO.GetComponent<AudioCollection>();
         }

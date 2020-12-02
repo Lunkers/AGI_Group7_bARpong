@@ -16,6 +16,7 @@ public class AudioPlayerSystem : SystemBase
             Debug.Log("Entity with audio play tag");
             Debug.Log(e);
             Debug.Log("Should play sound");
+            audioSource.clip = GameManager.instance.audioCollection.ScorePointAudio;
             audioSource.Play();
             entityManager.RemoveComponent<AudioPlayTag>(e);
             //entityManager.DestroyEntity(e);

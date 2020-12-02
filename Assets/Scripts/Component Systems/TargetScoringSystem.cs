@@ -71,7 +71,7 @@ public class TargetScoringSystem : SystemBase
 
             var goalEntity = isBodyATrigger ? entityA : entityB;
             var throwableEntity = isBodyATrigger ? entityB : entityA;
-
+            
             //play audio on ball
             commandBuffer.AddComponent(throwableEntity, new AudioPlayTag());
             //reset ball

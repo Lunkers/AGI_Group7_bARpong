@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Text scoreText;
+    public AudioCollection audioCollection;
     //public int amtCups;
 
     private int curScore;

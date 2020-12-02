@@ -12,10 +12,7 @@ public class BounceAudioPlayerSystem : SystemBase
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithAll<BouncePlayTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audioSource) =>
         {
-            Debug.Log("Entity with audio play tag");
-            Debug.Log(e);
-            Debug.Log("Should play sound");
-            audioSource.clip = GameSettings.audioCollection.BallOnCupAudio;
+            audioSource.clip = GameManager.instance.audioCollection.BallOnCupAudio;
             audioSource.Play();
             entityManager.RemoveComponent<BouncePlayTag>(e);
             //entityManager.DestroyEntity(e);
