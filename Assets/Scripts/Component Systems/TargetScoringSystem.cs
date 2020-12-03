@@ -71,6 +71,8 @@ public class TargetScoringSystem : SystemBase
 
             var goalEntity = isBodyATrigger ? entityA : entityB;
             var throwableEntity = isBodyATrigger ? entityB : entityA;
+            Debug.Log("we should trigger the audio systems now");
+            Debug.Log(throwableEntity);
             
             //play audio on ball
             commandBuffer.AddComponent(throwableEntity, new AudioPlayTag());
