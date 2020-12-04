@@ -10,12 +10,12 @@ public class AudioPlayerSystem : SystemBase
     protected override void OnCreate()
     {
         base.OnCreate();
-        Debug.Log("Creating Audio system");
+        //Debug.Log("Creating Audio system");
     }
 
     protected override void OnUpdate() 
     {
-        Debug.Log("Audio system triggered!");
+        //Debug.Log("Audio system triggered!");
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithoutBurst().WithAll<AudioPlayTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audio) =>
         {

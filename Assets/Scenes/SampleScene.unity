@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &229233145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_Name
+      value: PhysicsPongBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.064588
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.34178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.9735613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394926643788562504, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
 --- !u!1001 &322331478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,6 +360,10 @@ PrefabInstance:
     - target: {fileID: 1582094862035267397, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_Name
       value: PhysicsPongCup (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614503259044486993, guid: cb99c391eb19048ed94212894857a291, type: 3}
+      propertyPath: m_Material.m_CollisionResponse.m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1763338535104507790, guid: cb99c391eb19048ed94212894857a291, type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,6 +653,7 @@ GameObject:
   - component: {fileID: 1130226369}
   - component: {fileID: 1130226368}
   - component: {fileID: 1130226367}
+  - component: {fileID: 1130226372}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -661,7 +723,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -818,6 +880,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130226372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130226366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5c3edf53f370e4fa6e8c5fe7ea972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1457706676 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2453589503574918546, guid: 788bdf1a16aa94f7fbb6a0dba652226b, type: 3}
@@ -986,6 +1060,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2453589503574918546, guid: 788bdf1a16aa94f7fbb6a0dba652226b, type: 3}
+      propertyPath: ScorePointAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c6c0e4ccdc4a3340bc135ce4cc3c00f, type: 3}
     - target: {fileID: 2453589503574918547, guid: 788bdf1a16aa94f7fbb6a0dba652226b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.064588

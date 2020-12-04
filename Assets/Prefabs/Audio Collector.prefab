@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallOnWoodAudio: {fileID: 8300000, guid: 76c3c0079d6d2417eadd62307dd8cd9f, type: 3}
   BallOnCupAudio: {fileID: 8300000, guid: b9a3ba6d333ab4d79b51eab24804c4cc, type: 3}
-  ScorePointAudio: {fileID: 8300000, guid: eca2c1a0c1b494e6da53abcb46b5c5f4, type: 3}
+  ScorePointAudio: {fileID: 8300000, guid: 2c6c0e4ccdc4a3340bc135ce4cc3c00f, type: 3}

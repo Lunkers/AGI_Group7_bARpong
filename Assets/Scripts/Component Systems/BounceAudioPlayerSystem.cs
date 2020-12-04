@@ -2,23 +2,29 @@ using Unity.Entities;
 using UnityEngine;
 
 
-
-[UpdateAfter(typeof(FixedStepSimulationSystemGroup))] //update after score checking
+[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+[UpdateAfter(typeof(BouncingAudioSystem))]
 public class BounceAudioPlayerSystem : SystemBase
 {
-
+   protected override void OnCreate()
+    {
+        base.OnCreate();
+    }
     protected override void OnUpdate() 
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        Entities.WithAll<BouncePlayTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audioSource) =>
+        Entities.WithoutBurst().WithAll<CupBounceTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audioSource) =>
         {
+            //Debug.Log("Bouncing on cup");
             audioSource.clip = GameManager.instance.audioCollection.BallOnCupAudio;
             audioSource.Play();
-            entityManager.RemoveComponent<BouncePlayTag>(e);
+            entityManager.RemoveComponent<CupBounceTag>(e);
+
             //entityManager.DestroyEntity(e);
         }).Run();
 
         // commandBuffer.Playback(EntityManager);
         // commandBuffer.Dispose();
     }
+    
 }

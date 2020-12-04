@@ -12,6 +12,6 @@ public sealed class GameSettings
         if(audioCollectionGO != null){
             audioCollection = audioCollectionGO.GetComponent<AudioCollection>();
         }
-        Assert.IsNotNull(audioCollection);
+        //Assert.IsNotNull(audioCollection);
     }
 }
