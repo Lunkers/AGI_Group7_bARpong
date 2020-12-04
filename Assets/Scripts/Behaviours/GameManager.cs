@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        Debug.Log("INSTANTIATING GAME MANAGER");
     }
     private void Start(){
         curScore = 6;

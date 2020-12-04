@@ -19,11 +19,11 @@ public class AudioPlayerSystem : SystemBase
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithoutBurst().WithAll<AudioPlayTag>().WithStructuralChanges().ForEach((Entity e, AudioSource audio) =>
         {
-            Debug.Log("Entity with audio play tag");
-            Debug.Log(e);
-            Debug.Log("Audio Source");
+            // Debug.Log("Entity with audio play tag");
+            // Debug.Log(e);
+            // Debug.Log("Audio Source");
             //Debug.Log(audio);
-            Debug.Log("Should play sound");
+            // Debug.Log("Should play sound");
             audio.clip = GameManager.instance.audioCollection.ScorePointAudio;
             audio.Play();
             entityManager.RemoveComponent<AudioPlayTag>(e);

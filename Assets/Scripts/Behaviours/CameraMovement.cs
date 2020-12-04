@@ -6,11 +6,12 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public float speed = 10f;
+    public GameObject Ball;
     ThrowMotionSystem throwMotionSystem;
     // Start is called before the first frame update
     void Start()
     {
-        throwMotionSystem =World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
+        throwMotionSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
         Debug.Log(throwMotionSystem != null);
     }
 
@@ -43,10 +44,11 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E))
         {
-            transform.Rotate(new Vector3(0, -speed * Time.deltaTime, 0));
+            Instantiate(Ball);
         }
         if (Input.GetKey(KeyCode.W))
         {
+
             transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
         }
 
@@ -60,12 +62,14 @@ public class CameraMovement : MonoBehaviour
             throwMotionSystem.Reset();
         }
 
-        if (Input.GetKey(KeyCode.Z)) {
-            transform.Rotate( speed * Time.deltaTime,0, 0);
+        if (Input.GetKey(KeyCode.Z))
+        {
+            transform.Rotate(speed * Time.deltaTime, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.X)) {
-            transform.Rotate (-speed * Time.deltaTime,0, 0);
+        if (Input.GetKey(KeyCode.X))
+        {
+            transform.Rotate(-speed * Time.deltaTime, 0, 0);
         }
     }
 
