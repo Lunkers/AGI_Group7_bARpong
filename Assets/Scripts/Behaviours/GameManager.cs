@@ -7,6 +7,7 @@ using Unity.Physics;
 using UnityEngine.UI;
 using Unity.Transforms;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Text scoreText;
+    public Text timeText;
+    public GameObject endPanel;
+    public TMP_Text resultText;
     //public int amtCups;
 
     private int curScore;
@@ -22,12 +26,14 @@ public class GameManager : MonoBehaviour
     private EntityManager manager;
     //private BlobAssetStore blobAssetStore;
     public bool tablePlaced = false;
+    private float elapsedTime;
 
     private void Awake() {
         instance = this;
     }
     private void Start(){
         curScore = 6;
+        elapsedTime = 0;
         DisplayScore();
     }
     private void DisplayScore(){
@@ -36,6 +42,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
+        elapsedTime += Time.deltaTime;
+        timeText.text = elapsedTime.ToString("F2");
         //TODO: add code for unity fixed timestep here
         //should match server tick rate when we get photon going    
     }
@@ -49,7 +57,9 @@ public class GameManager : MonoBehaviour
             //DESTROY BALL
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             em.DestroyEntity(em.UniversalQuery);
-            SceneManager.LoadScene(0);
+            resultText.text = elapsedTime.ToString("F2")+ " seconds!";
+            endPanel.SetActive(true);
+
         }
         
         
