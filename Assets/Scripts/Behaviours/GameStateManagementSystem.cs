@@ -20,6 +20,7 @@ public class GameStateManagementSystem : SystemBase
         Entities.WithAll<DeleteTag>().WithStructuralChanges().ForEach((Entity e) =>
         {
             GameManager.instance.IncreaseScore();
+            
             entityManager.DestroyEntity(e);
         }).Run();
 

@@ -71,7 +71,11 @@ public class TargetScoringSystem : SystemBase
 
             var goalEntity = isBodyATrigger ? entityA : entityB;
             var throwableEntity = isBodyATrigger ? entityB : entityA;
-
+            Debug.Log("we should trigger the audio systems now");
+            Debug.Log(throwableEntity);
+            
+            //play audio on ball
+            commandBuffer.AddComponent(throwableEntity, new AudioPlayTag());
             //reset ball
             //{
             //    var throwable = throwableGroup[throwableEntity];
@@ -90,7 +94,7 @@ public class TargetScoringSystem : SystemBase
 
             //remove cup if it should be deleted;
             if (goalComponent.deleteOnScore)
-            {
+            {   
                 //commandBuffer.DestroyEntity(goalComponent.water);
                 commandBuffer.DestroyEntity(goalComponent.cup);
                 commandBuffer.AddComponent(goalEntity, new DeleteTag()); // tag for score increment/deletion

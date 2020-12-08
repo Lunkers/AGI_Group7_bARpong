@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7115309843309959140}
   - component: {fileID: 3803054383884743667}
   - component: {fileID: 3326734188311497615}
+  - component: {fileID: 4811764792339067876}
   m_Layer: 0
   m_Name: PhysicsPongCup (6)
   m_TagString: Untagged
@@ -87,7 +88,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -415,6 +416,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetThrowables: 1
+--- !u!114 &4811764792339067876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582094862035267397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a79acd7aff897542bd4b12c459840d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &974634314786738642
 MonoBehaviour:
   m_ObjectHideFlags: 0

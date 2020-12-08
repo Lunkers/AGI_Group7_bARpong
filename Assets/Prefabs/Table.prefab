@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4137459471336960790}
   - component: {fileID: -8419252333912120599}
   - component: {fileID: 2365494819890160004}
+  - component: {fileID: 8930258567314732405}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -163,7 +164,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -270,3 +271,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
+--- !u!114 &8930258567314732405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102245606310671427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5c3edf53f370e4fa6e8c5fe7ea972e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

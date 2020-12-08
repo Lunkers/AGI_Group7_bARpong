@@ -41,7 +41,7 @@ public class ThrowMotionSystem : SystemBase
                 return;
             }
             //debug to check input works
-            Debug.Log("Launching");
+            //Debug.Log("Launching");
             //add initial velocity
             //get camera direction
             Camera cameraData = Camera.main;
