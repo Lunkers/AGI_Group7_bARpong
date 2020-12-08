@@ -31,7 +31,7 @@ public class ThrowMotionSystem : SystemBase
     }
 
     //Adds physics properties to the throwables, and "launches" them
-    public void Launch()
+    public void Launch(float velocity, float angle)
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e, ref Throwable t, ref PhysicsCollider collider) =>
@@ -51,7 +51,7 @@ public class ThrowMotionSystem : SystemBase
 
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
-                Linear = new float3(camDirection.x * t.initialVelocity * math.cos(t.angle), t.initialVelocity * math.sin(t.angle), camDirection.z * t.initialVelocity * math.cos(t.angle))
+                Linear = new float3(camDirection.x * velocity * math.cos(angle), velocity * math.sin(angle), camDirection.z * velocity * math.cos(angle))
             });
             //add physics mass to entity
             t.thrown = true;

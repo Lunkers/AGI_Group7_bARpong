@@ -20,7 +20,9 @@ public class ResetStoppedThrowableSystem : SystemBase
         EntityCommandBuffer commandBuffer = bufferSystem.CreateCommandBuffer();
         Entities.ForEach((ref Entity e, ref Throwable throwable, ref PhysicsVelocity velocity) => {
             if(throwable.thrown) {
-                if((math.abs(velocity.Linear.x) <= velocityLimit.x) && (math.abs(velocity.Linear.y) <= velocityLimit.y) && (math.abs(velocity.Linear.z) <= velocityLimit.z)) {
+                var velocityLength = math.sqrt(math.pow(velocity.Linear.x, 2.0f) + math.pow(velocity.Linear.y, 2.0f) + math.pow(velocity.Linear.z, 2.0f));
+                var velocityLimitLength = math.sqrt(math.pow(velocityLimit.x, 2.0f) + math.pow(velocityLimit.y, 2.0f) + math.pow(velocityLimit.z, 2.0f));
+                if(velocityLength < velocityLimitLength) {
                     //reset throwable
                     commandBuffer.AddComponent(e, new ResetTag());
                 }
