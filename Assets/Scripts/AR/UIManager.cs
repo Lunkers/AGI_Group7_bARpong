@@ -101,6 +101,7 @@ public class UIManager : MonoBehaviour
         set => _ShowSecondaryInstructionalUI = value;
     }
 
+    [SerializeField]
     ARUXManager _AnimationManager;
     public ARUXManager animationManager
     {
@@ -130,7 +131,11 @@ public class UIManager : MonoBehaviour
     void OnEnable()
     {
         ARUXManager.onFadeOffComplete += FadeComplete;
-        TablePlacer.onTablePlaced += () => _PlacedObject = true;
+        TablePlacer.onTablePlaced += () =>
+        {
+            Debug.Log("Table placed, goal should be met");
+            _PlacedObject = true;
+        };
 
         GetManagers();
         _UXOrderedQueue = new Queue<UXHandle>();
@@ -157,11 +162,11 @@ public class UIManager : MonoBehaviour
         {
             //pop off 
             _CurrentHandle = _UXOrderedQueue.Dequeue();
-
+            Debug.Log($"Current Goal: {_CurrentHandle.Goal}");
             //fade on 
             FadeOnInstructionalUI(_CurrentHandle.InstructionalUI);
             _GoalReached = GetGoal(_CurrentHandle.Goal);
-            _ProcessingInstructions = false;
+            _ProcessingInstructions = true;
             _FadedOff = false;
         }
 
@@ -171,7 +176,7 @@ public class UIManager : MonoBehaviour
             if (_GoalReached.Invoke())
             {
                 // if goal reached, fade off
-                if (_FadedOff)
+                if (!_FadedOff)
                 {
                     _FadedOff = true;
                     _AnimationManager.FadeOffCurrentUI();
@@ -214,6 +219,10 @@ public class UIManager : MonoBehaviour
 
     void FadeOnInstructionalUI(InstructionUI ui)
     {
+        Debug.Log("HERE IS THE UI OBJECT");
+        Debug.Log(ui);
+        Debug.Log("HERE IS ANIMATION MANAGER");
+        Debug.Log(_AnimationManager);
         switch (ui)
         {
             case InstructionUI.CrossPlatformFindPlane:
@@ -236,11 +245,13 @@ public class UIManager : MonoBehaviour
                 break;
 
             case InstructionUI.TapToPlace:
+                Debug.Log("Should show tap to place text");
                 _AnimationManager.ShowTapToPlace();
                 break;
 
 
             case InstructionUI.None:
+
                 break;
 
         }
@@ -249,14 +260,17 @@ public class UIManager : MonoBehaviour
     bool PlanesFound() => _PlaneManager && _PlaneManager.trackables.count > 0;
     bool MultiplePlanesFound() => _PlaneManager && _PlaneManager.trackables.count > 1;
 
-    void FadeComplete(){
+    void FadeComplete()
+    {
         _ProcessingInstructions = false;
     }
-    bool PlacedObject() {
+    bool PlacedObject()
+    {
         return _PlacedObject;
     }
 
-    public void AddToQueue(UXHandle uXHandle){
+    public void AddToQueue(UXHandle uXHandle)
+    {
         _UXOrderedQueue.Enqueue(uXHandle);
     }
 

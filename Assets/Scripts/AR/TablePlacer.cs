@@ -68,9 +68,10 @@ public class TablePlacer : MonoBehaviour
         Instantiate(ball, placementPose.position, rotation);
         Instantiate(table, placementPose.position, rotation);
         if(onTablePlaced != null){
+            Debug.Log("On table placed event running");
             onTablePlaced();
         }
-
+        Destroy(placementIndicator);
         Destroy(this);
     }
 

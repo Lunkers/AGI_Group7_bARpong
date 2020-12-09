@@ -399,13 +399,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _StartWithInstructionalUI: 1
-  _InstructionalUI: 0
+  _InstructionalUI: 1
   _SecondaryInstructionalUI: 2
   _InstructionalGoal: 0
   _SecondaryGoal: 2
   _CoachingOverlayFallback: 1
   _ARSessionOrigin: {fileID: 578740792}
-  _ShowSecondaryInstructionalUI: 0
+  _ShowSecondaryInstructionalUI: 1
+  _AnimationManager: {fileID: 64486855}
   _PlaneManager: {fileID: 578740796}
 --- !u!1 &131615314
 GameObject:
@@ -535,7 +536,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 38712747}
+  - {fileID: 1941656884}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -738,6 +739,7 @@ GameObject:
   - component: {fileID: 817360281}
   - component: {fileID: 817360280}
   - component: {fileID: 817360283}
+  - component: {fileID: 817360284}
   m_Layer: 0
   m_Name: AR Session
   m_TagString: Untagged
@@ -800,7 +802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Goal: 1
   _AutoActivate: 1
---- !u!114 &817360285
+--- !u!114 &817360284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -809,7 +811,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 817360279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a8b6ca54bfd48008604ff0aa2bd07c, type: 3}
+  m_Script: {fileID: 11500000, guid: 321fe813e5f434039af82b1a3907ee62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tablePlacementState: {fileID: 1110261710}
@@ -1301,7 +1303,6 @@ MonoBehaviour:
 AudioListener:
 --- !u!1 &1884396456
 GameObject:
->>>>>>> progress on ar coaching interface
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1469,7 +1470,7 @@ CanvasRenderer:
   m_AnchoredPosition: {x: 0, y: -79}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2121545875
+--- !u!1 &1941656883
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1480,19 +1481,19 @@ GameObject:
 --- !u!114 &3737481829635528645
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2121545878}
-  - component: {fileID: 2121545877}
-  - component: {fileID: 2121545876}
+  - component: {fileID: 1941656884}
+  - component: {fileID: 1941656887}
+  - component: {fileID: 1941656886}
+  - component: {fileID: 1941656885}
   m_Layer: 0
-  m_Name: Event systems
+  m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2121545876
->>>>>>> progress on ar coaching interface
-MonoBehaviour:
+--- !u!4 &1941656884
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2678,4 +2679,5 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3737481831443209542}
   m_CullTransparentMesh: 0
->>>>>>> progress on ar coaching interface
+  m_GameObject: {fileID: 1941656883}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

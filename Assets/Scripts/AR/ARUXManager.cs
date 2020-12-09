@@ -109,63 +109,65 @@ public class ARUXManager : MonoBehaviour
         //     return;
         // }
 
-        // if (_FadeOff || _FadeOn)
-        // {
-        //     if (_FadeOn)
-        //     {
-        //         _StartColor = _AlphaWhite;
-        //         _TargetColor = _White;
-        //         _TweenDuration = _FadeOnDuration;
-        //         _FadeOff = false;
-        //     }
+        if (_FadeOff || _FadeOn)
+        {
+            if (_FadeOn)
+            {
+                _StartColor = _AlphaWhite;
+                _TargetColor = _White;
+                _TweenDuration = _FadeOnDuration;
+                _FadeOff = false;
+            }
 
-        //     if (_FadeOff)
-        //     {
-        //         _StartColor = _White;
-        //         _TargetColor = _AlphaWhite;
-        //         _TweenDuration = _FadeOffDuration;
-        //         _FadeOn = false;
-        //     }
+            if (_FadeOff)
+            {
+                _StartColor = _White;
+                _TargetColor = _AlphaWhite;
+                _TweenDuration = _FadeOffDuration;
+                _FadeOn = false;
+            }
 
-        //     if (_TweenTime < 1)
-        //     {
-        //         _TweenTime += Time.deltaTime / _TweenDuration;
-        //         _LerpColor = Color.Lerp(_StartColor, _TargetColor, _TweenTime);
-        //         // _RawImage.color = _LerpColor;
+            if (_TweenTime < 1)
+            {
+                _TweenTime += Time.deltaTime / _TweenDuration;
+                _LerpColor = Color.Lerp(_StartColor, _TargetColor, _TweenTime);
+                // _RawImage.color = _LerpColor;
 
-        //         _Tweening = true;
-        //     }
+                _Tweening = true;
+            }
 
-        //     else
-        //     {
-        //         _TweenTime = 0;
-        //         _FadeOff = false;
-        //         _FadeOn = false;
-        //         _Tweening = false;
+            else
+            {
+                _TweenTime = 0;
+                _FadeOff = false;
+                _FadeOn = false;
+                _Tweening = false;
 
-        //         //check if it was a fade off 
-        //         if (_TargetColor == _AlphaWhite)
-        //         {
-        //             //Do things
-        //             if (onFadeOffComplete != null)
-        //             {
-        //                 onFadeOffComplete();
-        //             }
+                //check if it was a fade off 
+                if (_TargetColor == _AlphaWhite)
+                {
+                    //Do things
+                    if (onFadeOffComplete != null)
+                    {
+                        onFadeOffComplete();
+                    }
 
-        //             // _RenderTexture = _VideoPlayer.targetTexture;
-        //             _RenderTexture.DiscardContents();
-        //             _RenderTexture.Release();
-        //             Graphics.Blit(_Transparent, _RenderTexture);
-        //         }
-        //     }
+                    // _RenderTexture = _VideoPlayer.targetTexture;
+                    // _RenderTexture.DiscardContents();
+                    // _RenderTexture.Release();
+                    // Graphics.Blit(_Transparent, _RenderTexture);
+                }
+            }
 
 
+        }
     }
 
     public void ShowTapToPlace()
     {
         // _VideoPlayer.clip = _TapToPlaceClip;
         // _VideoPlayer.Play();
+        Debug.Log("ShowTapToPlace called");
         _InstructionText.text = _TapToPlaceText;
         _FadeOn = true;
     }
@@ -222,21 +224,21 @@ public class ARUXManager : MonoBehaviour
             _FadeOff = true;
         }
 
-        // if (_VideoPlayer.clip != null)
-        // {
-        //     if (_Tweening || _FadeOn)
-        //     {
-        //         _TweenTime = 1.0f;
-        //         _RawImage.color = _AlphaWhite;
-        //         _InstructionText.color = _AlphaWhite;
-        //         if (onFadeOffComplete != null)
-        //         {
-        //             onFadeOffComplete();
-        //         }
-        //     }
 
-        //     _FadeOff = true;
-        // }
+        if (_Tweening || _FadeOn)
+        {
+            _TweenTime = 1.0f;
+            //_RawImage.color = _AlphaWhite;
+            _InstructionText.color = _AlphaWhite;
+            if (onFadeOffComplete != null)
+            {
+                onFadeOffComplete();
+            }
+            _FadeOff = true;
+        }
+
+
+
     }
 }
 
