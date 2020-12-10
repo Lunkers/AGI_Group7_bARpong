@@ -16,24 +16,24 @@ public class ARUXManager : MonoBehaviour
     }
 
 
-    // [SerializeField]
-    // [Tooltip("Video clip for finding planes")]
-    // VideoClip _FindPlaneClip;
-    // public VideoClip FindPlaneClip
-    // {
-    //     get => _FindPlaneClip;
-    //     set => _FindPlaneClip = value;
-    // }
+    [SerializeField]
+    [Tooltip("Video clip for finding planes")]
+    VideoClip _FindPlaneClip;
+    public VideoClip FindPlaneClip
+    {
+        get => _FindPlaneClip;
+        set => _FindPlaneClip = value;
+    }
 
 
-    // [SerializeField]
-    // [Tooltip("Video explaining tap to place")]
-    // VideoClip _TapToPlaceClip;
-    // public VideoClip TapToPlaceClip
-    // {
-    //     get => _TapToPlaceClip;
-    //     set => _TapToPlaceClip = value;
-    // }
+    [SerializeField]
+    [Tooltip("Video explaining tap to place")]
+    VideoClip _TapToPlaceClip;
+    public VideoClip TapToPlaceClip
+    {
+        get => _TapToPlaceClip;
+        set => _TapToPlaceClip = value;
+    }
 
     [SerializeField]
     [Tooltip("ARKit coaching overlay")]
@@ -45,14 +45,24 @@ public class ARUXManager : MonoBehaviour
     }
 
 
-    // [SerializeField]
-    // [Tooltip("Raw image used for videoplayer reference")]
-    // RawImage _RawImage;
-    // public RawImage rawImage
-    // {
-    //     get => _RawImage;
-    //     set => _RawImage = value;
-    // }
+    [SerializeField]
+    [Tooltip("Video player reference")]
+    VideoPlayer _VideoPlayer;
+
+    public VideoPlayer videoPlayer
+    {
+        get => _VideoPlayer;
+        set => _VideoPlayer = value;
+    }
+
+    [SerializeField]
+    [Tooltip("Raw image used for videoplayer reference")]
+    RawImage _RawImage;
+    public RawImage rawImage
+    {
+        get => _RawImage;
+        set => _RawImage = value;
+    }
 
     [SerializeField]
     [Tooltip("UI fade-in time")]
@@ -76,8 +86,8 @@ public class ARUXManager : MonoBehaviour
     float _TweenTime;
     float _TweenDuration;
 
-    const string _MoveDeviceText = "Move your device slowly";
-    const string _TapToPlaceText = "Tap The screen to place the play area";
+    string _MoveDeviceText = "Move your device slowly until at least one plane is found";
+    string _TapToPlaceText = "Tap the screen to place the play area";
 
     public static event Action onFadeOffComplete;
 
@@ -103,11 +113,13 @@ public class ARUXManager : MonoBehaviour
     void Update()
 
     {
+        // Debug.Log($"Text: {_InstructionText.text}");
+        // Debug.Log($"Target color: {_TargetColor}");
         // try to avoid video player crashing the app
-        // if (!_VideoPlayer.isPrepared)
-        // {
-        //     return;
-        // }
+        if (!_VideoPlayer.isPrepared)
+        {
+            return;
+        }
 
         if (_FadeOff || _FadeOn)
         {
@@ -131,7 +143,7 @@ public class ARUXManager : MonoBehaviour
             {
                 _TweenTime += Time.deltaTime / _TweenDuration;
                 _LerpColor = Color.Lerp(_StartColor, _TargetColor, _TweenTime);
-                // _RawImage.color = _LerpColor;
+                _RawImage.color = _LerpColor;
 
                 _Tweening = true;
             }
@@ -152,10 +164,10 @@ public class ARUXManager : MonoBehaviour
                         onFadeOffComplete();
                     }
 
-                    // _RenderTexture = _VideoPlayer.targetTexture;
-                    // _RenderTexture.DiscardContents();
-                    // _RenderTexture.Release();
-                    // Graphics.Blit(_Transparent, _RenderTexture);
+                    _RenderTexture = _VideoPlayer.targetTexture;
+                    _RenderTexture.DiscardContents();
+                    _RenderTexture.Release();
+                    Graphics.Blit(_Transparent, _RenderTexture);
                 }
             }
 
@@ -165,18 +177,21 @@ public class ARUXManager : MonoBehaviour
 
     public void ShowTapToPlace()
     {
-        // _VideoPlayer.clip = _TapToPlaceClip;
-        // _VideoPlayer.Play();
-        Debug.Log("ShowTapToPlace called");
+        _VideoPlayer.clip = _TapToPlaceClip;
+        _VideoPlayer.Play();
+        // Debug.Log("ShowTapToPlace called");
         _InstructionText.text = _TapToPlaceText;
+        _InstructionText.ForceMeshUpdate(true);
+        // Debug.Log($"Should display text: {_InstructionText.text}");
         _FadeOn = true;
     }
 
     public void ShowCrossPlatformFindPlane()
     {
-        // _VideoPlayer.clip = _FindPlaneClip;
-        // _VideoPlayer.Play();
+        _VideoPlayer.clip = _FindPlaneClip;
+        _VideoPlayer.Play();
         _InstructionText.text = _MoveDeviceText;
+        _InstructionText.ForceMeshUpdate(true);
         _FadeOn = true;
     }
 
@@ -187,7 +202,7 @@ public class ARUXManager : MonoBehaviour
             if (_ARKitCoach.supported)
             {
                 _ARKitCoach.ActivateCoaching(true);
-
+                _VideoPlayer.Stop();
                 _UsingARKitCoaching = true;
             }
             else
@@ -224,21 +239,23 @@ public class ARUXManager : MonoBehaviour
             _FadeOff = true;
         }
 
-
-        if (_Tweening || _FadeOn)
+        if (_VideoPlayer.clip != null)
         {
-            _TweenTime = 1.0f;
-            //_RawImage.color = _AlphaWhite;
-            _InstructionText.color = _AlphaWhite;
-            if (onFadeOffComplete != null)
+
+            if (_Tweening || _FadeOn)
             {
-                onFadeOffComplete();
+                _TweenTime = 1.0f;
+                _RawImage.color = _AlphaWhite;
+                _InstructionText.color = _AlphaWhite;
+                if (onFadeOffComplete != null)
+                {
+                    onFadeOffComplete();
+                }
+
             }
+
             _FadeOff = true;
         }
-
-
-
     }
 }
 

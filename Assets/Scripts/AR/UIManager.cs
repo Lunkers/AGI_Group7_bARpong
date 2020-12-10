@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
         CrossPlatformFindPlane,
         ARKitCoachingOverlay,
         TapToPlace,
+        SwipeToThrow,
         None
     };
 
@@ -52,11 +53,21 @@ public class UIManager : MonoBehaviour
         set => _SecondaryInstructionalUI = value;
     }
 
+    [SerializeField]
+    InstructionUI _TertiaryInstructionalUI = InstructionUI.SwipeToThrow;
+
+    public InstructionUI tertiaryInstructionUI
+    {
+        get => _TertiaryInstructionalUI;
+        set => _TertiaryInstructionalUI = value;
+    }
+
     public enum InstructionGoals
     {
         FoundAPlane,
         FoundMultiplePlanes,
         PlacedAnObject,
+        SwipedToThrow,
         None
     }
 
@@ -73,6 +84,14 @@ public class UIManager : MonoBehaviour
     {
         get => _SecondaryGoal;
         set => _SecondaryGoal = value;
+    }
+
+    [SerializeField]
+    InstructionGoals _TertiaryGoal = InstructionGoals.SwipedToThrow;
+    public InstructionGoals tertiaryGoal
+    {
+        get => _TertiaryGoal;
+        set => _TertiaryGoal = value;
     }
 
     [SerializeField]
@@ -95,7 +114,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     bool _ShowSecondaryInstructionalUI;
 
-    public bool showSecondaryInstructionUI
+    public bool showSecondaryInstructionalUI
     {
         get => _ShowSecondaryInstructionalUI;
         set => _ShowSecondaryInstructionalUI = value;
@@ -130,12 +149,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+
         ARUXManager.onFadeOffComplete += FadeComplete;
-        TablePlacer.onTablePlaced += () =>
-        {
-            Debug.Log("Table placed, goal should be met");
-            _PlacedObject = true;
-        };
+        TablePlacer.onTablePlaced += () => _PlacedObject = true;
 
         GetManagers();
         _UXOrderedQueue = new Queue<UXHandle>();
@@ -148,6 +164,7 @@ public class UIManager : MonoBehaviour
         {
             _UXOrderedQueue.Enqueue(new UXHandle(_SecondaryInstructionalUI, _SecondaryGoal));
         }
+        _UXOrderedQueue.Enqueue(new UXHandle(_TertiaryInstructionalUI, _TertiaryGoal));
     }
 
     void OnDisable()
@@ -162,7 +179,7 @@ public class UIManager : MonoBehaviour
         {
             //pop off 
             _CurrentHandle = _UXOrderedQueue.Dequeue();
-            Debug.Log($"Current Goal: {_CurrentHandle.Goal}");
+            // Debug.Log($"Current Goal: {_CurrentHandle.Goal}");
             //fade on 
             FadeOnInstructionalUI(_CurrentHandle.InstructionalUI);
             _GoalReached = GetGoal(_CurrentHandle.Goal);
@@ -219,10 +236,10 @@ public class UIManager : MonoBehaviour
 
     void FadeOnInstructionalUI(InstructionUI ui)
     {
-        Debug.Log("HERE IS THE UI OBJECT");
-        Debug.Log(ui);
-        Debug.Log("HERE IS ANIMATION MANAGER");
-        Debug.Log(_AnimationManager);
+        // Debug.Log("HERE IS THE UI OBJECT");
+        // Debug.Log(ui);
+        // Debug.Log("HERE IS ANIMATION MANAGER");
+        // Debug.Log(_AnimationManager);
         switch (ui)
         {
             case InstructionUI.CrossPlatformFindPlane:
@@ -249,6 +266,8 @@ public class UIManager : MonoBehaviour
                 _AnimationManager.ShowTapToPlace();
                 break;
 
+            case InstructionUI.SwipeToThrow:
+                break;
 
             case InstructionUI.None:
 
@@ -277,5 +296,9 @@ public class UIManager : MonoBehaviour
     public void TestFlipPlacementBool()
     {
         _PlacedObject = true;
+    }
+
+    void OnDestroy() {
+        Destroy(_AnimationManager);    
     }
 }
