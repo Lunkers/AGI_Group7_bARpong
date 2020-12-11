@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text resultText;
     //public int amtCups;
 
+    public bool hasSwiped = false;
     private int curScore;
     //private Entity ballEntityPrefab;
     private EntityManager manager;

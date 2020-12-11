@@ -151,7 +151,10 @@ public class UIManager : MonoBehaviour
     {
 
         ARUXManager.onFadeOffComplete += FadeComplete;
-        TablePlacer.onTablePlaced += () => _PlacedObject = true;
+        TablePlacer.onTablePlaced += () => {
+            Debug.Log("Table was placed");
+            _PlacedObject = true;
+            };
 
         GetManagers();
         _UXOrderedQueue = new Queue<UXHandle>();
@@ -227,6 +230,9 @@ public class UIManager : MonoBehaviour
             case InstructionGoals.PlacedAnObject:
                 return PlacedObject;
 
+            case InstructionGoals.SwipedToThrow:
+                return HasSwiped;
+
             case InstructionGoals.None:
                 return () => false;
         }
@@ -267,6 +273,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case InstructionUI.SwipeToThrow:
+                _AnimationManager.ShowSwipeInstruction();
                 break;
 
             case InstructionUI.None:
@@ -287,6 +294,10 @@ public class UIManager : MonoBehaviour
     {
         return _PlacedObject;
     }
+
+    bool HasSwiped() {
+        return GameManager.instance.hasSwiped;
+    } 
 
     public void AddToQueue(UXHandle uXHandle)
     {

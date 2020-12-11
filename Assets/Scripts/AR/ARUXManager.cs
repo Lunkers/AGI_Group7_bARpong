@@ -212,6 +212,13 @@ public class ARUXManager : MonoBehaviour
         }
     }
 
+    public void ShowSwipeInstruction()
+    {
+        _VideoPlayer.Stop();
+        _InstructionText.text = "Swipe on the screen to throw the ball";
+        _FadeOn = true;
+    }
+
     public bool ARKitCoachingSupported()
     {
         if (_ARKitCoach)
