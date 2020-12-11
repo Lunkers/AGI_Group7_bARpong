@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  Ball: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,7 +640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 1
-  Ball: {fileID: 6394926643788562502, guid: 24ca36a50ac17cc44bfb9dafd1718894, type: 3}
 --- !u!1 &1130226366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,8 +1024,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506bde10195177e4bb893eab14f4b1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
   audioCollection: {fileID: 1457706676}
+  scoreText: {fileID: 0}
+  timeText: {fileID: 0}
+  endPanel: {fileID: 0}
+  resultText: {fileID: 0}
   tablePlaced: 0
 --- !u!4 &2122838831
 Transform:
