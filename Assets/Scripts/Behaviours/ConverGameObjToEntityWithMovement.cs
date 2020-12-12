@@ -11,7 +11,7 @@ public class ConverGameObjToEntityWithMovement : MonoBehaviour, IConvertGameObje
     //public AudioSource audioSource;
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem){
         if(TryGetComponent<AudioSource>(out var audioSource)){
-            Debug.Log("found audio source!");
+            // Debug.Log("found audio source!");
             conversionSystem.AddHybridComponent(audioSource);
         }
     }

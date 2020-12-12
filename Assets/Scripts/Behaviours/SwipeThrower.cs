@@ -24,8 +24,8 @@ public class SwipeThrower : MonoBehaviour
                 var v = normalizedDeltaPosition / touch.deltaTime;
                 if (v.y > 0.0f)
                 {
-                    Debug.Log($"Should launch with velocity {v.y}");
-                    Debug.Log($"delta pos: {touch.deltaPosition}, delta time {touch.deltaTime}");
+                    // Debug.Log($"Should launch with velocity {v.y}");
+                    // Debug.Log($"delta pos: {touch.deltaPosition}, delta time {touch.deltaTime}");
                     throwMotionSystem.Launch(v.y, Mathf.PI / 4.0f);
                 }
             }
