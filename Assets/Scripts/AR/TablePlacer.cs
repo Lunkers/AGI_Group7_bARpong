@@ -12,7 +12,6 @@ public class TablePlacer : MonoBehaviour
     public GameObject placementIndicator;
     public GameObject ball;
 
-    public static event Action onTablePlaced;
 
     private ARPlaneManager planeManager;
     private ARRaycastManager raycastManager;
@@ -40,7 +39,7 @@ public class TablePlacer : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-
+        
         if (validPose && validPlane && DidPress())
         {
             PlaceTable();
@@ -67,11 +66,7 @@ public class TablePlacer : MonoBehaviour
         var rotation = Quaternion.LookRotation(cameraBearing);
         Instantiate(ball, placementPose.position, rotation);
         Instantiate(table, placementPose.position, rotation);
-        if(onTablePlaced != null){
-            Debug.Log("On table placed event running");
-            onTablePlaced();
-        }
-        Destroy(placementIndicator);
+         
         Destroy(this);
     }
 
@@ -79,7 +74,7 @@ public class TablePlacer : MonoBehaviour
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.2f));
         var hits = new List<ARRaycastHit>();
-        raycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon);
+        raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
         validPose = hits.Count > 0;
 
         if (validPose)
@@ -87,8 +82,7 @@ public class TablePlacer : MonoBehaviour
             plane = planeManager.GetPlane(hits[0].trackableId);
             placementPose = hits[0].pose;
         }
-        else
-        {
+        else {
             plane = null;
         }
     }
@@ -102,7 +96,7 @@ public class TablePlacer : MonoBehaviour
             var cameraForward = Camera.current.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0.0f, cameraForward.z).normalized;
             placementPose.rotation = Quaternion.LookRotation(cameraBearing);
-
+            
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
         else
@@ -111,8 +105,7 @@ public class TablePlacer : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         //set state on destruction
         GameManager.instance.tablePlaced = true;
     }

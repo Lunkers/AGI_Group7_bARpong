@@ -47,8 +47,8 @@ public class ThrowMotionSystem : SystemBase
             Camera cameraData = Camera.main;
             //var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
-            var velVec = new float3(camDirection.x * velocity * math.cos(angle), velocity * math.sin(angle), camDirection.z * velocity * math.cos(angle));
-            Debug.Log($"Velocity: {velVec}");
+
+
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
                 Linear = new float3(camDirection.x * velocity * math.cos(angle), velocity * math.sin(angle), camDirection.z * velocity * math.cos(angle))
@@ -60,9 +60,6 @@ public class ThrowMotionSystem : SystemBase
                 ApplySmoothing = 1,
             });
         }).Run();
-        if(!GameManager.instance.hasSwiped){
-            GameManager.instance.hasSwiped = true;
-        }
     }
 
     //resets the ball back to camera

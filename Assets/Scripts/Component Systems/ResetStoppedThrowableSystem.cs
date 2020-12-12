@@ -8,7 +8,7 @@ using Unity.Physics.Systems;
 public class ResetStoppedThrowableSystem : SystemBase
 {
     EndFixedStepSimulationEntityCommandBufferSystem bufferSystem;
-    static readonly float3 velocityLimit = new float3(0.005f, 0.005f, 0.005f);
+    static readonly float3 velocityLimit = new float3(0.1f, 0.1f, 0.1f);
 
     protected override void OnCreate()
     {
