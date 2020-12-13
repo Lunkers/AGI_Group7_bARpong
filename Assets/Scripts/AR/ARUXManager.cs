@@ -207,7 +207,7 @@ public class ARUXManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Coaching overlay not supported on this platform");
+                //Debug.LogWarning("Coaching overlay not supported on this platform");
             }
         }
     }

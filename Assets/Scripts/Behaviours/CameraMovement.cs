@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         throwMotionSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ThrowMotionSystem>();
-        Debug.Log(throwMotionSystem != null);
+        //Debug.Log(throwMotionSystem != null);
     }
 
     // Update is called once per frame

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506bde10195177e4bb893eab14f4b1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioCollection: {fileID: 0}
+  audioCollection: {fileID: 38712747}
   scoreText: {fileID: 3737481830025509325}
   timeText: {fileID: 1804503083}
   endPanel: {fileID: 3737481830545422180}
@@ -230,6 +230,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788bdf1a16aa94f7fbb6a0dba652226b, type: 3}
+--- !u!114 &38712747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2453589503574918546, guid: 788bdf1a16aa94f7fbb6a0dba652226b, type: 3}
+  m_PrefabInstance: {fileID: 38712746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30db6cd89638405e86c79f03aa84ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &64486854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208, y: -50}
+  m_AnchoredPosition: {x: -280, y: -50}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1804503082
@@ -1545,13 +1556,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 70
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cups left: '
+  m_Text: 0:00
 --- !u!1 &1884396456
 GameObject:
   m_ObjectHideFlags: 0

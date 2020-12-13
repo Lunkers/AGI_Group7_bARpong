@@ -48,7 +48,7 @@ public class ThrowMotionSystem : SystemBase
             //var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
             var velVec = new float3(camDirection.x * velocity * math.cos(angle), velocity * math.sin(angle), camDirection.z * velocity * math.cos(angle));
-            Debug.Log($"Velocity: {velVec}");
+            //Debug.Log($"Velocity: {velVec}");
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
                 Linear = new float3(camDirection.x * velocity * math.cos(angle), velocity * math.sin(angle), camDirection.z * velocity * math.cos(angle))

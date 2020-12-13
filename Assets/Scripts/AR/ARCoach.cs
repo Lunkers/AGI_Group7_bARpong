@@ -113,7 +113,7 @@ public class ARCoach : MonoBehaviour
         else
         #endif
         {
-            Debug.LogError("ARCoachingOverlayView is not supported by this device");
+            //Debug.LogError("ARCoachingOverlayView is not supported by this device");
         }
     }
 
@@ -125,7 +125,7 @@ public class ARCoach : MonoBehaviour
             else
         #endif
             {
-                Debug.LogWarning("ARCoaching overlay is not supported");
+                //Debug.LogWarning("ARCoaching overlay is not supported");
             }
     }
 
@@ -137,7 +137,7 @@ public class ARCoach : MonoBehaviour
         }
         #endif
         {
-            Debug.LogWarning("ARCoaching overlay is not supported");
+            //Debug.LogWarning("ARCoaching overlay is not supported");
         }
     }
 }

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Debug.Log("INSTANTIATING GAME MANAGER");
+        //Debug.Log("INSTANTIATING GAME MANAGER");
     }
     private void Start()
     {

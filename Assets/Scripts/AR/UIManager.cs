@@ -268,7 +268,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case InstructionUI.TapToPlace:
-                Debug.Log("Should show tap to place text");
+                //Debug.Log("Should show tap to place text");
                 _AnimationManager.ShowTapToPlace();
                 break;
 
