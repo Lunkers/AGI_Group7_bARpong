@@ -31,7 +31,7 @@ public class ThrowMotionSystem : SystemBase
     }
 
     //Adds physics properties to the throwables, and "launches" them
-    public void Launch(float velocity, float angle)
+    public void Launch(float velocity)
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         Entities.WithStructuralChanges().ForEach((ref Entity e, ref Throwable t, ref PhysicsCollider collider) =>
@@ -40,14 +40,17 @@ public class ThrowMotionSystem : SystemBase
             {
                 return;
             }
-            //debug to check input works
-            //Debug.Log("Launching");
+
             //add initial velocity
             //get camera direction
             Camera cameraData = Camera.main;
             //var cameraData = entityManager.GetComponentObject<Camera>(t.camera);
             var camDirection = cameraData.transform.forward;
-
+            
+            // Calculate the throw angle
+            var cameraAngle = Vector3.Angle(Vector3.up, Camera.main.transform.forward);
+            var t_angle = Mathf.Abs((cameraAngle-90.0f)/90.0f);
+            var angle = Mathf.Lerp(Mathf.PI/4.0f, 0.0f, t_angle);
 
             entityManager.AddComponentData(e, new PhysicsVelocity
             {
