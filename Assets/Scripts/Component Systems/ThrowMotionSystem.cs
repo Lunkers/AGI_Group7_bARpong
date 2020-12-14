@@ -63,6 +63,9 @@ public class ThrowMotionSystem : SystemBase
                 ApplySmoothing = 1,
             });
         }).Run();
+        if(!GameManager.instance.hasSwiped){
+            GameManager.instance.hasSwiped = true;
+        }
     }
 
     //resets the ball back to camera

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text resultText;
     //public int amtCups;
 
+    public bool hasSwiped = false;
     private int curScore;
     //private Entity ballEntityPrefab;
     private EntityManager manager;
@@ -29,16 +30,19 @@ public class GameManager : MonoBehaviour
     public bool tablePlaced = false;
     private float elapsedTime;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
         Debug.Log("INSTANTIATING GAME MANAGER");
     }
-    private void Start(){
+    private void Start()
+    {
         curScore = 6;
         elapsedTime = 0;
         DisplayScore();
     }
-    private void DisplayScore(){
+    private void DisplayScore()
+    {
         if (scoreText)
             scoreText.text = $"Cups left: { curScore}";
     }
@@ -52,10 +56,12 @@ public class GameManager : MonoBehaviour
         //should match server tick rate when we get photon going    
     }
 
-    public void IncreaseScore() {
-        curScore = curScore -1;
+    public void IncreaseScore()
+    {
+        curScore = curScore - 1;
         DisplayScore();
-        if(curScore == 0){
+        if (curScore == 0)
+        {
             // disable fixed rate before scene switch to avoid crashes
             //FixedRateUtils.DisableFixedRate(World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<SimulationSystemGroup>());
             //DESTROY BALL
@@ -70,8 +76,8 @@ public class GameManager : MonoBehaviour
                 endPanel.SetActive(true);
             }
         }
-        
-        
+
+
     }
 
 
