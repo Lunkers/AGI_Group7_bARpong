@@ -48,8 +48,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
-        elapsedTime += Time.deltaTime;
+        
         if (timeText && tablePlaced) {
+            elapsedTime += Time.deltaTime;
             timeText.text = elapsedTime.ToString("F2");
         }
         //TODO: add code for unity fixed timestep here
