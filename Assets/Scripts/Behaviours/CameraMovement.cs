@@ -36,7 +36,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            // throwMotionSystem.Launch();
+            throwMotionSystem.Launch(4.0f, Mathf.PI/4.0f);
         }
         if (Input.GetKey(KeyCode.Q))
         {
