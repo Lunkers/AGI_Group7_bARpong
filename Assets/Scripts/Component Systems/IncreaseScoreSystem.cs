@@ -1,28 +1,18 @@
-using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-public enum GameStates
-{
-    Placing,
-    Playing,
-    Won,
-    Lost
-}
-
 [UpdateAfter(typeof(FixedStepSimulationSystemGroup))] //update after score checking
-[UpdateAfter(typeof(IncreaseScoreSystem))]
-public class GameStateManagementSystem : SystemBase
+public class IncreaseScoreSystem : SystemBase
 {
 
     protected override void OnUpdate() 
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        Entities.WithAll<DeleteTag>().WithStructuralChanges().ForEach((Entity e) =>
+        Entities.WithAll<DeleteTag>().WithStructuralChanges().ForEach((Entity e, in ScoringCollider sc) =>
         {
-            //GameManager.instance.IncreaseScore();
+            GameManager.instance.IncreaseScore();
             
-            entityManager.DestroyEntity(e);
+            //entityManager.DestroyEntity(e);
         }).Run();
 
         // commandBuffer.Playback(EntityManager);
