@@ -71,7 +71,12 @@ public class TargetScoringSystem : SystemBase
 
             var goalEntity = isBodyATrigger ? entityA : entityB;
             var throwableEntity = isBodyATrigger ? entityB : entityA;
-            Debug.Log("we should trigger the audio systems now");
+
+            Throwable throwableComponent = throwableGroup[throwableEntity];
+            if(!throwableComponent.thrown){
+                //INGET FUSK HÄR INTE
+                return; 
+            }
             // Debug.Log(throwableEntity);
             
             //play audio on ball
