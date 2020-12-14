@@ -14,5 +14,9 @@ public class ConverGameObjToEntityWithMovement : MonoBehaviour, IConvertGameObje
             Debug.Log("found audio source!");
             conversionSystem.AddHybridComponent(audioSource);
         }
+
+        if(TryGetComponent<TrailRenderer>(out var trailRenderer)){
+            conversionSystem.AddHybridComponent(trailRenderer);
+        }
     }
 }

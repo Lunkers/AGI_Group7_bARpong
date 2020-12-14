@@ -8,6 +8,10 @@ public class CameraMovement : MonoBehaviour
     public float speed = 10f;
     public GameObject Ball;
     ThrowMotionSystem throwMotionSystem;
+
+    Vector2 cameraRotation = new Vector2 (0, 0);
+	public float cameraFreeLookSpeed = 10.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            // throwMotionSystem.Launch();
+            throwMotionSystem.Launch(4.0f);
         }
         if (Input.GetKey(KeyCode.Q))
         {
@@ -70,6 +74,13 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.X))
         {
             transform.Rotate(-speed * Time.deltaTime, 0, 0);
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            cameraRotation.y += Input.GetAxis("Mouse X");
+            cameraRotation.x += -Input.GetAxis("Mouse Y");
+            transform.eulerAngles = (Vector2)cameraRotation * cameraFreeLookSpeed;
         }
     }
 

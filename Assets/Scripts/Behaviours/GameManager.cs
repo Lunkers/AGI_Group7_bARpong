@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         elapsedTime += Time.deltaTime;
-        timeText.text = elapsedTime.ToString("F2");
+        if (timeText) {
+            timeText.text = elapsedTime.ToString("F2");
+        }
         //TODO: add code for unity fixed timestep here
         //should match server tick rate when we get photon going    
     }
@@ -59,8 +61,14 @@ public class GameManager : MonoBehaviour
             //DESTROY BALL
             EntityManager em = World.DefaultGameObjectInjectionWorld.EntityManager;
             em.DestroyEntity(em.UniversalQuery);
-            resultText.text = elapsedTime.ToString("F2")+ " seconds!";
-            endPanel.SetActive(true);
+            
+            if (resultText) {
+                resultText.text = elapsedTime.ToString("F2")+ " seconds!";
+            }
+
+            if (endPanel) {
+                endPanel.SetActive(true);
+            }
         }
         
         

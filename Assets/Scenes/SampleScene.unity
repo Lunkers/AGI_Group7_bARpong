@@ -1199,6 +1199,7 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   timeText: {fileID: 0}
   endPanel: {fileID: 2028238978}
+  endPanel: {fileID: 0}
   resultText: {fileID: 0}
   tablePlaced: 0
 --- !u!4 &2122838831
