@@ -96,7 +96,7 @@ public class TargetScoringSystem : SystemBase
             if (goalComponent.deleteOnScore)
             {   
                 //commandBuffer.DestroyEntity(goalComponent.water);
-                commandBuffer.DestroyEntity(goalComponent.cup);
+                commandBuffer.AddComponent(goalComponent.cup, new DeleteTag());
                 commandBuffer.AddComponent(goalEntity, new DeleteTag()); // tag for score increment/deletion
                 
             }
