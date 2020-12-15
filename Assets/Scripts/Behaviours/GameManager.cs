@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Text timeText;
     public GameObject endPanel;
     public TMP_Text resultText;
+    public GameObject resetButton;
     //public int amtCups;
 
     public bool hasSwiped = false;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     private void Update() {
         
         if (timeText && tablePlaced) {
+            resetButton.SetActive(true);
             elapsedTime += Time.deltaTime;
             timeText.text = elapsedTime.ToString("F2");
         }

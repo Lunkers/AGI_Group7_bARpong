@@ -157,6 +157,7 @@ MonoBehaviour:
   timeText: {fileID: 1804503083}
   endPanel: {fileID: 3737481830545422180}
   resultText: {fileID: 3737481831443209560}
+  resetButton: {fileID: 1949076779}
   hasSwiped: 0
   tablePlaced: 0
 --- !u!4 &37442014
@@ -1774,7 +1775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1949076780
 RectTransform:
   m_ObjectHideFlags: 0
